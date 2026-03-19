@@ -8,9 +8,9 @@
   --green-glow: rgba(62,168,83,0.25);
   --green-dim: #1a4d26;
   --bg: #060c06;
-  --surface: #0e170e;
-  --card: #121f12;
-  --card-hover: #162616;
+  --surface: rgba(14, 23, 14, 0.6);
+  --card: rgba(18, 31, 18, 0.4);
+  --card-hover: rgba(22, 38, 22, 0.7);
   --border: rgba(62,168,83,0.08);
   --border-active: rgba(62,168,83,0.25);
   --text: #a3bda3;
@@ -175,15 +175,19 @@ body {
 /* ========== BUTTONS ========== */
 .start-btn {
   padding: 22px 64px; border: none; border-radius: var(--radius);
-  background: var(--green); color: #fff;
-  font-size: 20px; font-family: var(--font-d); font-weight: 600;
+  /* Replaced solid green with a modern gradient */
+  background: linear-gradient(135deg, var(--green-bright), var(--green));
+  color: #000; /* Dark text on bright button pops more */
+  font-size: 20px; font-family: var(--font-d); font-weight: 800;
   letter-spacing: 5px; cursor: pointer;
-  transition: all var(--ease); animation: glow 3s ease-in-out infinite;
+  transition: all var(--ease); 
+  animation: glow 3s ease-in-out infinite;
   text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(62, 168, 83, 0.4);
 }
 .start-btn:hover {
-  transform: translateY(-3px); background: var(--green-bright);
-  color: var(--bg);
+  transform: translateY(-3px) scale(1.02); 
+  box-shadow: 0 8px 25px rgba(62, 168, 83, 0.6);
 }
 .start-btn:active { transform: translateY(-1px); }
 .start-btn.small { font-size: 17px; padding: 18px 48px; letter-spacing: 4px; }
@@ -347,4 +351,12 @@ body {
   .option-btn { font-size: 17px; padding: 24px 32px; }
   .start-btn { font-size: 28px; padding: 28px 88px; }
   .stat-card { padding: 32px 18px; }
+}
+
+/* ========== GLASSMORPHISM BLUR ========== */
+.situation-box, 
+.option-btn, 
+.stat-card {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
