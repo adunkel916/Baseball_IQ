@@ -596,6 +596,15 @@ function renderQuestion() {
     btn.addEventListener("click", () => handleAnswer(parseInt(btn.dataset.idx)));
   });
 
+  // --- NEW CODE: Initialize 3D Tilt Effect ---
+  VanillaTilt.init(document.querySelectorAll(".option-btn"), {
+    max: 15,          // Maximum tilt rotation (degrees)
+    speed: 400,       // Speed of the enter/exit transition
+    glare: true,      // Adds a cool lighting reflection
+    "max-glare": 0.2, // Opacity of the glare
+    scale: 1.02       // Slight zoom when hovered/touched
+  });
+  
   $("feedback").classList.add("hidden");
   $("next-wrap").classList.add("hidden");
   $("confetti").classList.add("hidden");
