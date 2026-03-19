@@ -2,22 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Green Bombers Baseball IQ</title>
+  
+  <base href="/Baseball_IQ/public/">
+  
   <meta name="description" content="Test your baseball situational awareness! A fun quiz app for the Green Bombers 8U baseball team.">
   <meta name="theme-color" content="#060c06">
-  <meta property="og:title" content="Green Bombers Baseball IQ">
-  <meta property="og:description" content="Do you know where to be on every play? Test your baseball IQ!">
-  <meta property="og:image" content="/images/logo.jpg">
-  <link rel="icon" type="image/jpeg" href="/images/logo.jpg">
+  
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=10.0">
+  
+  <link rel="stylesheet" href="css/styles.css?v=25.0">
 </head>
 <body>
 
-<!-- ===== MENU SCREEN ===== -->
 <div id="menu-screen" class="container centered">
   <img src="images/logo.jpg" class="logo" alt="Green Bombers">
   <p class="team-name">Green Bombers</p>
@@ -35,50 +36,46 @@
   <button class="start-btn" id="start-btn">Play Ball!</button>
 </div>
 
-<!-- ===== PLAY SCREEN ===== -->
 <div id="play-screen" class="container hidden">
   <div class="header-bar">
-    <div id="play-screen" class="container hidden">
-  <div class="header-bar">
     <button id="quit-btn" style="background:none; border:none; color:var(--text-dim); font-size:13px; font-weight:800; cursor:pointer; text-transform:uppercase; letter-spacing:2px; font-family:var(--font);">&#8592; HOME</button>
-    
     <div class="q-counter" id="q-counter"></div>
     <div class="score-area">
       <span class="score-correct" id="score-display"></span>
       <span class="streak hidden" id="streak-display"></span>
     </div>
   </div>
-    <div class="q-counter" id="q-counter"></div>
-    <div class="score-area">
-      <span class="score-correct" id="score-display"></span>
-      <span class="streak hidden" id="streak-display"></span>
-    </div>
-  </div>
+  
   <div class="progress-track">
     <div class="progress-fill" id="progress-fill"></div>
   </div>
+  
   <div class="cat-badge" id="cat-badge"></div>
+  
   <div class="diamond-container">
     <div class="diamond-wrap" id="play-diamond"></div>
     <div class="confetti-wrap hidden" id="confetti"></div>
   </div>
+  
   <div class="situation-box">
     <p class="situation-text" id="situation-text"></p>
     <p class="question-text" id="question-text"></p>
   </div>
+  
   <div class="options" id="options-wrap"></div>
+  
   <div class="feedback hidden" id="feedback">
     <p id="feedback-text"></p>
   </div>
+  
   <div style="text-align:center;margin-top:20px" class="hidden" id="next-wrap">
     <button class="next-btn" id="next-btn"></button>
   </div>
 </div>
 
-<!-- ===== RESULTS SCREEN ===== -->
 <div id="results-screen" class="container centered hidden">
   <div class="results-hero">
-    <img src="/images/logo.jpg" class="logo" alt="Green Bombers" style="width:100px;height:100px;animation-duration:3s;">
+    <img src="images/logo.jpg" class="logo" alt="Green Bombers" style="width:100px;height:100px;animation-duration:3s;">
     <h2 class="results-grade" id="results-grade"></h2>
     <p class="results-name hidden" id="results-name"></p>
   </div>
@@ -96,7 +93,6 @@
       <div class="stat-label">Best Streak</div>
     </div>
   </div>
-  <div class="diamond-wrap" id="results-diamond"></div>
   <div class="results-actions">
     <button class="start-btn small" id="play-again-btn">Play Again!</button>
     <button class="next-btn ghost" id="main-menu-btn">Main Menu</button>
@@ -106,4 +102,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 <script src="js/app.js"></script>
 </body>
-</html> 
+</html>
