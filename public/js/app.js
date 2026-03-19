@@ -465,15 +465,38 @@ const FIELDERS = [
 function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
   const hasRunner = (b) => runners.includes(b);
   function rp(p) { if (typeof p==="object"&&p.x!==undefined) return p; return POS[p]||{x:200,y:200}; }
-  let s = `<svg viewBox="0 0 400 400" class="diamond-svg">`;
-  s += `<defs>
-    <marker id="ah" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="rgba(255,255,255,0.6)"/></marker>
-    <marker id="at" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#66bb6a"/></marker>
-    <marker id="ao" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#e53935"/></marker>
-    <filter id="glow"><feGaussianBlur stdDeviation="2" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  </defs>`;
-  s += `<rect x="0" y="0" width="400" height="400" fill="#0d1b0d"/>`;
-  s += `<image href="images/field.jpg" x="0" y="8" width="400" height="368"/>`;
+  
+  let s = `<svg viewBox="0 0 400 400" class="diamond-svg" xmlns="http://www.w3.org/2000/svg">`;
+  
+  // 1. Dark background "soil" so the dots are visible if the image fails
+  s += `<rect x="0" y="0" width="400" height="400" fill="#0d1b0d" rx="14"/>`; 
+  
+  // 2. The Field Image (Relative path for GitHub)
+  s += `<image href="images/field.jpg" x="0" y="8" width="400" height="368" opacity="0.8"/>`;
+
+  // 3. Brighter Ball Paths (Thicker lines so they show up on your Pixel 8 Pro)
+  for (const seg of ballPath) {
+    const from=rp(seg.from), to=rp(seg.to);
+    let col = seg.type === "hit" ? "#ffffff" : (seg.type === "overthrow" ? "#ff4444" : "#5cd672");
+    s += `<line x1="${from.x}" y1="${from.y}" x2="${to.x}" y2="${to.y}" stroke="${col}" stroke-width="3" stroke-dasharray="6,4" opacity="1"/>`;
+  }
+
+  // 4. Brighter Fielder Dots (Grey/White instead of black)
+  for (const f of FIELDERS) {
+    const isYou = yourPosition === f.label;
+    if (isYou) {
+      // Pulsing green ring for "You"
+      s += `<circle cx="${f.x}" cy="${f.y}" r="16" fill="none" stroke="#5cd672" stroke-width="2.5" opacity="0.8">
+              <animate attributeName="r" values="14;18;14" dur="1.5s" repeatCount="indefinite"/>
+            </circle>`;
+    }
+    s += `<circle cx="${f.x}" cy="${f.y}" r="11" fill="${isYou ? '#3ea853' : '#444'}" stroke="${isYou ? '#5cd672' : '#888'}" stroke-width="1.5"/>`;
+    s += `<text x="${f.x}" y="${f.y+4}" text-anchor="middle" fill="white" font-size="9" font-weight="900" font-family="sans-serif">${f.label}</text>`;
+  }
+  
+  s += `</svg>`;
+  return s;
+}
 
   for (const seg of ballPath) {
     const from=rp(seg.from), to=rp(seg.to);
