@@ -529,6 +529,8 @@ function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
 
 
 // ============ GAME STATE ============
+const correctSound = new Audio('/sounds/hit.mp3');
+const wrongSound = new Audio('/sounds/strike.m4a');
 let gameState = "menu";
 let questions = [];
 let currentQ = 0;
@@ -627,6 +629,9 @@ function handleAnswer(idx) {
   });
 
   if (isCorrect) {
+    correctSound.currentTime = 0;
+    correctSound.play();
+
     score++; streak++;
     if (streak > bestStreak) bestStreak = streak;
     $("score-display").textContent = `✓ ${score}`;
@@ -636,6 +641,9 @@ function handleAnswer(idx) {
     if (streak >= 2) { $("streak-display").textContent = `🔥 ${streak}`; $("streak-display").classList.remove("hidden"); }
     showConfetti();
   } else {
+    wrongSound.currentTime = 0;
+    wrongSound.play();
+
     streak = 0;
     $("streak-display").classList.add("hidden");
   }
