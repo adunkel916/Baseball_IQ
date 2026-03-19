@@ -531,6 +531,25 @@ function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
 // ============ GAME STATE ============
 const correctSound = new Audio('/sounds/hit.mp3');
 const wrongSound = new Audio('/sounds/strike.m4a');
+
+// NEW: Walkup Song Directory
+const walkupSongs = {
+  "jackson": new Audio('/sounds/jackson.m4a'),
+  "andres": new Audio('/sounds/andres.m4a'),
+  "andrew": new Audio('/sounds/andrew.m4a'),
+  "caleb": new Audio('/sounds/caleb.m4a'),
+  "dallas": new Audio('/sounds/dallas.m4a'),
+  "dominic": new Audio('/sounds/dominic.m4a'),
+  "elliott": new Audio('/sounds/elliott.m4a'),
+  "gio": new Audio('/sounds/gio.m4a'),
+  "johnny": new Audio('/sounds/johnny.m4a'),
+  "liam": new Audio('/sounds/liam.m4a'),
+  "matthew": new Audio('/sounds/matthew.m4a'),
+  "weston": new Audio('/sounds/weston.m4a')
+  };
+
+let currentWalkup = null; // Keeps track of the active song
+
 let gameState = "menu";
 let questions = [];
 let currentQ = 0;
@@ -573,6 +592,21 @@ function startGame() {
   const filtered = categoryFilter === "All" ? SCENARIOS : SCENARIOS.filter(s => s.category === categoryFilter);
   questions = shuffle(filtered).map(q => ({ ...q, options: shuffle(q.options) }));
   currentQ = 0; selected = null; score = 0; streak = 0; bestStreak = 0;
+  
+  // NEW: Stop any currently playing walkup song
+  if (currentWalkup) {
+    currentWalkup.pause();
+    currentWalkup.currentTime = 0;
+  }
+
+  // NEW: Check the typed name and play their hype track
+  const typedName = $("player-name").value.trim().toLowerCase();
+  if (walkupSongs[typedName]) {
+    currentWalkup = walkupSongs[typedName];
+    currentWalkup.currentTime = 0;
+    currentWalkup.play().catch(err => console.log("Audio play failed:", err));
+  }
+
   showScreen("play-screen");
   renderQuestion();
 }
@@ -617,6 +651,14 @@ function renderQuestion() {
 function handleAnswer(idx) {
   if (selected !== null) return;
   selected = idx;
+
+// NEW: Stop the walkup music so the hit/strike sound is clear
+  if (currentWalkup) {
+    currentWalkup.pause();
+    currentWalkup.currentTime = 0;
+    currentWalkup = null; 
+  }
+  
   const q = questions[currentQ];
   const isCorrect = q.options[idx].correct;
 
