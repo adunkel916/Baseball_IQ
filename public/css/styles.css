@@ -5,16 +5,17 @@
 :root {
   --green: #3ea853;
   --green-bright: #5cd672;
-  --green-glow: rgba(62,168,83,0.25);
+  --green-dim: #1a4d26;
   --bg: #060c06;
   --surface: rgba(14, 23, 14, 0.6);
   --card: rgba(18, 31, 18, 0.4);
-  --border: rgba(62,168,83,0.1);
-  --text: #a3bda3;
-  --text-dim: #4d6b4d;
-  --text-bright: #e2f0e2;
+  --border: rgba(62,168,83,0.15);
+  --text: #e2f0e2;
+  --text-dim: #88a088;
+  --gold: #f5c842;
   --font: 'Outfit', sans-serif;
   --font-d: 'Oswald', sans-serif;
+  --ease: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -29,7 +30,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ========== LAYOUT ========== */
+/* FORCE VERTICAL STACK FOR ALL SCREENS */
 .container {
   width: 100%;
   max-width: 480px;
@@ -38,91 +39,78 @@ body {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
+  justify-content: flex-start !important;
   min-height: 100vh;
-  gap: 24px;
+  gap: 25px;
 }
 
 .hidden { display: none !important; }
 
-/* ========== MENU ELEMENTS ========== */
-.logo { width: 120px; height: 120px; border-radius: 50%; margin-bottom: 10px; }
-.team-name { font-size: 12px; letter-spacing: 8px; color: var(--text-dim); text-transform: uppercase; }
+/* MENU ELEMENTS */
+.logo { width: 120px; height: 120px; border-radius: 50%; border: 2px solid var(--green); margin-bottom: 5px; }
+.team-name { font-size: 11px; letter-spacing: 8px; color: var(--text-dim); text-transform: uppercase; }
 .title { font-family: var(--font-d); font-size: 60px; color: var(--green-bright); text-transform: uppercase; line-height: 1; margin: 10px 0; }
 .subtitle { font-size: 15px; color: var(--text-dim); margin-bottom: 20px; }
 
-/* Fixed sizing for the input and labels */
-.name-section { width: 100%; max-width: 320px; text-align: center; }
-.name-label, .cat-label { font-size: 11px; font-weight: 700; color: var(--text-dim); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 12px; display: block; }
+/* INPUTS & BUTTONS */
+.name-section { width: 100%; max-width: 320px; }
+.name-label { font-size: 11px; font-weight: 700; color: var(--text-dim); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 12px; display: block; text-align: center; }
 
 .name-input {
   width: 100%;
-  padding: 16px;
+  padding: 18px;
   background: var(--card);
   border: 1.5px solid var(--border);
   border-radius: 12px;
-  color: var(--text-bright);
-  font-size: 16px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
   text-align: center;
   outline: none;
 }
 
-/* Category Buttons */
-.cat-wrap { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; }
+.cat-wrap { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; width: 100%; }
 .cat-btn {
-  padding: 10px 18px;
+  padding: 12px 20px;
   background: var(--surface);
   border: 1.5px solid var(--border);
-  border-radius: 20px;
+  border-radius: 25px;
   color: var(--text-dim);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
 }
-.cat-btn.active { background: #1a4d26; border-color: var(--green); color: var(--green-bright); }
+.cat-btn.active { background: var(--green-dim); border-color: var(--green); color: var(--green-bright); }
 
-/* Play Ball Button */
 .start-btn {
   width: 100%;
-  max-width: 280px;
-  padding: 22px;
+  max-width: 300px;
+  padding: 24px;
   background: linear-gradient(135deg, var(--green-bright), var(--green));
   color: #000;
   border: none;
-  border-radius: 14px;
+  border-radius: 15px;
   font-family: var(--font-d);
   font-weight: 800;
-  font-size: 22px;
+  font-size: 24px;
   letter-spacing: 4px;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
-/* ========== GAME ELEMENTS ========== */
+/* GAME ELEMENTS */
+.header-bar { width: 100%; display: flex; justify-content: space-between; align-items: center; }
 .q-card { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-.diamond-wrap { width: 100%; max-width: 300px; }
-.situation-box { background: var(--card); padding: 24px; border-radius: 15px; border-left: 4px solid var(--green); width: 100%; }
-.question-text { font-size: 19px; font-weight: 800; color: var(--green-bright); margin-top: 10px; }
+.diamond-wrap { width: 100%; max-width: 320px; min-height: 320px; display: flex; justify-content: center; }
+.situation-box { background: var(--card); padding: 25px; border-radius: 15px; border-left: 5px solid var(--green); width: 100%; }
+.question-text { font-size: 20px; font-weight: 800; color: var(--green-bright); margin-top: 10px; }
 
 .options { width: 100%; display: flex; flex-direction: column; gap: 12px; }
-.option-btn { width: 100%; padding: 20px; background: var(--card); border: 1.5px solid var(--border); border-radius: 12px; color: var(--text); font-weight: 600; cursor: pointer; }
+.option-btn { width: 100%; padding: 20px; background: var(--card); border: 1.5px solid var(--border); border-radius: 12px; color: var(--text); font-weight: 600; text-align: left; cursor: pointer; }
 
-/* Ensure the Diamond SVG is visible and centered */
-.diamond-wrap {
-  width: 100%;
-  max-width: 320px;
-  min-height: 320px; /* Forces space for the field */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px 0;
-}
-
-.diamond-wrap {
-  width: 100%;
-  max-width: 320px;
-  min-height: 320px; /* Forces the space to stay open */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+/* RESULTS */
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; width: 100%; margin: 20px 0; }
+.stat-card { background: var(--card); padding: 20px 10px; border-radius: 15px; text-align: center; border: 1.5px solid var(--border); }
+.stat-value { font-family: var(--font-d); font-size: 32px; font-weight: 700; }
+.stat-label { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); }
