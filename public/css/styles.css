@@ -15,12 +15,10 @@
   --gold: #f5c842;
   --font: 'Outfit', sans-serif;
   --font-d: 'Oswald', sans-serif;
-  --ease: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
   min-height: 100vh;
-  /* CLEAN GRADIENT ONLY - NO BACKGROUND IMAGE */
   background: radial-gradient(circle at 15% 50%, rgba(26, 77, 38, 0.15), transparent 50%),
               radial-gradient(circle at 85% 30%, rgba(62, 168, 83, 0.1), transparent 50%),
               var(--bg);
@@ -30,87 +28,70 @@ body {
   overflow-x: hidden;
 }
 
-/* FORCE VERTICAL STACK FOR ALL SCREENS */
 .container {
   width: 100%;
   max-width: 480px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 20px;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   justify-content: flex-start !important;
   min-height: 100vh;
-  gap: 25px;
+  gap: 20px;
 }
 
 .hidden { display: none !important; }
 
-/* MENU ELEMENTS */
-.logo { width: 120px; height: 120px; border-radius: 50%; border: 2px solid var(--green); margin-bottom: 5px; }
-.team-name { font-size: 11px; letter-spacing: 8px; color: var(--text-dim); text-transform: uppercase; }
-.title { font-family: var(--font-d); font-size: 60px; color: var(--green-bright); text-transform: uppercase; line-height: 1; margin: 10px 0; }
-.subtitle { font-size: 15px; color: var(--text-dim); margin-bottom: 20px; }
+/* HEADER & HUD */
+.header-bar { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
+.q-counter { font-size: 14px; font-weight: 700; color: var(--text-dim); }
 
-/* INPUTS & BUTTONS */
-.name-section { width: 100%; max-width: 320px; }
-.name-label { font-size: 11px; font-weight: 700; color: var(--text-dim); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 12px; display: block; text-align: center; }
+.progress-track { width: 100%; height: 6px; background: var(--surface); border-radius: 10px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--green-bright); transition: width 0.4s ease; }
 
-.name-input {
+/* DIAMOND FIX */
+.diamond-container { width: 100%; display: flex; justify-content: center; margin: 10px 0; }
+.diamond-wrap {
   width: 100%;
-  padding: 18px;
+  max-width: 340px;
+  aspect-ratio: 1 / 1;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background: #0d1b0d;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.diamond-wrap svg { width: 100%; height: 100%; display: block; }
+
+/* CARD & TEXT */
+.cat-badge { font-size: 11px; font-weight: 800; color: var(--green-bright); letter-spacing: 2px; text-transform: uppercase; }
+.situation-box { background: var(--card); padding: 25px; border-radius: 15px; border-left: 5px solid var(--green); width: 100%; }
+.situation-text { font-size: 16px; line-height: 1.6; margin-bottom: 15px; color: var(--text); }
+.question-text { font-size: 20px; font-weight: 900; color: var(--green-bright); line-height: 1.4; }
+
+/* BUTTONS */
+.options { width: 100%; display: flex !important; flex-direction: column !important; gap: 12px; }
+.option-btn {
+  width: 100%;
+  padding: 18px 24px;
   background: var(--card);
   border: 1.5px solid var(--border);
   border-radius: 12px;
-  color: #fff;
-  font-size: 18px;
+  color: var(--text);
+  font-size: 16px;
   font-weight: 600;
-  text-align: center;
-  outline: none;
-}
-
-.cat-wrap { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; width: 100%; }
-.cat-btn {
-  padding: 12px 20px;
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: 25px;
-  color: var(--text-dim);
-  font-size: 13px;
-  font-weight: 600;
+  text-align: left;
   cursor: pointer;
-}
-.cat-btn.active { background: var(--green-dim); border-color: var(--green); color: var(--green-bright); }
-
-.start-btn {
-  width: 100%;
-  max-width: 300px;
-  padding: 24px;
-  background: linear-gradient(135deg, var(--green-bright), var(--green));
-  color: #000;
-  border: none;
-  border-radius: 15px;
-  font-family: var(--font-d);
-  font-weight: 800;
-  font-size: 24px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  transition: all 0.2s ease;
 }
 
-/* GAME ELEMENTS */
-.header-bar { width: 100%; display: flex; justify-content: space-between; align-items: center; }
-.q-card { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-.diamond-wrap { width: 100%; max-width: 320px; min-height: 320px; display: flex; justify-content: center; }
-.situation-box { background: var(--card); padding: 25px; border-radius: 15px; border-left: 5px solid var(--green); width: 100%; }
-.question-text { font-size: 20px; font-weight: 800; color: var(--green-bright); margin-top: 10px; }
+/* HOME SCREEN SPECIFICS */
+.logo { width: 110px; height: 110px; border-radius: 50%; margin-bottom: 5px; border: 2px solid var(--green); }
+.team-name { font-size: 11px; letter-spacing: 8px; color: var(--text-dim); text-transform: uppercase; }
+.title { font-family: var(--font-d); font-size: 60px; color: var(--green-bright); text-transform: uppercase; line-height: 1; margin: 10px 0; }
 
-.options { width: 100%; display: flex; flex-direction: column; gap: 12px; }
-.option-btn { width: 100%; padding: 20px; background: var(--card); border: 1.5px solid var(--border); border-radius: 12px; color: var(--text); font-weight: 600; text-align: left; cursor: pointer; }
-
-/* RESULTS */
-.stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; width: 100%; margin: 20px 0; }
-.stat-card { background: var(--card); padding: 20px 10px; border-radius: 15px; text-align: center; border: 1.5px solid var(--border); }
-.stat-value { font-family: var(--font-d); font-size: 32px; font-weight: 700; }
-.stat-label { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); }
+.name-input { width: 100%; max-width: 320px; padding: 18px; background: var(--card); border: 1.5px solid var(--border); border-radius: 12px; color: #fff; font-size: 18px; text-align: center; outline: none; }
+.start-btn { width: 100%; max-width: 300px; padding: 24px; background: linear-gradient(135deg, var(--green-bright), var(--green)); color: #000; border: none; border-radius: 15px; font-family: var(--font-d); font-weight: 800; font-size: 24px; letter-spacing: 4px; text-transform: uppercase; cursor: pointer; }
