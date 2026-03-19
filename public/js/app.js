@@ -750,5 +750,12 @@ $("main-menu-btn").addEventListener("click", () => {
   initMenu();
 });
 
+// New Home/Quit button listener
+$("quit-btn").addEventListener("click", () => { 
+  categoryFilter = "All"; // Adding this resets the category filter just like the main menu button
+  showScreen("menu-screen"); 
+  initMenu(); 
+});
+
 // ============ BOOT ============
 initMenu();
