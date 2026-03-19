@@ -476,7 +476,7 @@ function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
     <filter id="glow"><feGaussianBlur stdDeviation="2" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
   </defs>`;
   s += `<rect x="0" y="0" width="400" height="400" fill="#0d1b0d"/>`;
-  s += `<image href="images/field.jpg" x="0" y="8" width="400" height="368"/>`;
+  s += `<href="images/field.jpg" x="0" y="8" width="400" height="368"/>`;
 
   // Ball paths
   for (const seg of ballPath) {
