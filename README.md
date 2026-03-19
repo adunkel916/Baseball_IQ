@@ -4,7 +4,7 @@ A gamified baseball situational awareness quiz app for the Green Bombers 8U team
 
 ## Live Site
 
-Deployed on Netlify: [your-site-name.netlify.app](https://green-bombers-iq.netlify.app/)
+Deployed on Netlify: [green-bombers-iq.netlify.app](https://green-bombers-iq.netlify.app/)
 
 ## Project Structure
 
