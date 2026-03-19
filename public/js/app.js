@@ -22,40 +22,49 @@ const FIELDERS = [
 
 function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
   function rp(p) { return (typeof p==="object") ? p : (POS[p]||{x:200,y:200}); }
-  let s = `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 10px 20px rgba(0,0,0,0.5))">`;
+  let s = `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">`;
   
-  // Grass & Dirt
-  s += `<circle cx="200" cy="200" r="190" fill="#0a1a0d" />`;
-  s += `<rect x="100" y="100" width="200" height="200" fill="#4d342e" transform="rotate(45 200 200)" />`;
-  s += `<rect x="135" y="135" width="130" height="130" fill="#0a1a0d" transform="rotate(45 200 200)" />`;
-  
-  // Foul Lines
-  s += `<line x1="200" y1="330" x2="360" y2="170" stroke="rgba(255,255,255,0.3)" stroke-width="2" />`;
-  s += `<line x1="200" y1="330" x2="40" y2="170" stroke="rgba(255,255,255,0.3)" stroke-width="2" />`;
+  // High-Fidelity Field
+  s += `<circle cx="200" cy="200" r="195" fill="#0a1a0d" />`;
+  s += `<circle cx="200" cy="200" r="185" fill="#1b3d21" />`;
+  s += `<rect x="100" y="100" width="200" height="200" fill="#5d4037" transform="rotate(45 200 200)" />`;
+  s += `<rect x="135" y="135" width="130" height="130" fill="#1b3d21" transform="rotate(45 200 200)" />`;
+  s += `<circle cx="200" cy="220" r="15" fill="#5d4037" />`;
+  s += `<line x1="200" y1="330" x2="365" y2="165" stroke="rgba(255,255,255,0.4)" stroke-width="2" />`;
+  s += `<line x1="200" y1="330" x2="35" y2="165" stroke="rgba(255,255,255,0.4)" stroke-width="2" />`;
 
-  // Ball Paths
+  // Ball Path with Marker
   for (const seg of (ballPath || [])) {
     const from=rp(seg.from), to=rp(seg.to);
     let col = seg.type==="hit" ? "#ffffff" : (seg.type==="overthrow" ? "#ff4444" : "#5cd672");
-    s += `<line x1="${from.x}" y1="${from.y}" x2="${to.x}" y2="${to.y}" stroke="${col}" stroke-width="4" stroke-dasharray="8,4" />`;
-    if (seg === ballPath[ballPath.length-1]) s += `<circle cx="${to.x}" cy="${to.y}" r="6" fill="white" stroke="#000" />`;
+    s += `<line x1="${from.x}" y1="${from.y}" x2="${to.x}" y2="${to.y}" stroke="${col}" stroke-width="5" stroke-dasharray="10,5" />`;
+    if (seg === ballPath[ballPath.length-1]) {
+        s += `<circle cx="${to.x}" cy="${to.y}" r="8" fill="white" stroke="#000" stroke-width="1" />`;
+        s += `<text x="${to.x}" y="${to.y+3}" text-anchor="middle" font-size="8">⚾</text>`;
+    }
   }
 
   // Bases
   const baseCoords = [{x:200,y:330},{x:300,y:230},{x:200,y:130},{x:100,y:230}];
   baseCoords.forEach(b => s += `<rect x="${b.x-6}" y="${b.y-6}" width="12" height="12" fill="#fff" transform="rotate(45 ${b.x} ${b.y})" />`);
 
-  // Runners & Fielders
+  // Flashing Runners
   runners.forEach(r => {
     const p = POS[r];
-    if (p) s += `<circle cx="${p.x}" cy="${p.y-15}" r="10" fill="#ff4444" stroke="#fff" stroke-width="2"><animate attributeName="r" values="9;11;9" dur="1s" repeatCount="indefinite"/></circle>`;
+    if (p) {
+        s += `<circle cx="${p.x}" cy="${p.y-18}" r="11" fill="#ff4444" stroke="#fff" stroke-width="2">
+                <animate attributeName="opacity" values="1;0.3;1" dur="0.8s" repeatCount="indefinite"/>
+              </circle>`;
+        s += `<text x="${p.x}" y="${p.y-14}" text-anchor="middle" fill="#fff" font-size="9" font-weight="900">R</text>`;
+    }
   });
 
+  // Fielders
   for (const f of FIELDERS) {
     const isYou = yourPosition===f.label;
-    if (isYou) s += `<circle cx="${f.x}" cy="${f.y}" r="18" fill="none" stroke="#5cd672" stroke-width="3" opacity="0.6"><animate attributeName="r" values="16;20;16" dur="1.5s" repeatCount="indefinite"/></circle>`;
-    s += `<circle cx="${f.x}" cy="${f.y}" r="12" fill="${isYou?'#3ea853':'#222'}" stroke="${isYou?'#fff':'#444'}" stroke-width="1.5"/>`;
-    s += `<text x="${f.x}" y="${f.y+4}" text-anchor="middle" fill="#fff" font-size="10" font-weight="800" font-family="sans-serif">${f.label}</text>`;
+    if (isYou) s += `<circle cx="${f.x}" cy="${f.y}" r="20" fill="none" stroke="#5cd672" stroke-width="3" opacity="0.6"><animate attributeName="r" values="18;22;18" dur="1.2s" repeatCount="indefinite"/></circle>`;
+    s += `<circle cx="${f.x}" cy="${f.y}" r="13" fill="${isYou?'#3ea853':'#222'}" stroke="${isYou?'#fff':'#555'}" stroke-width="1.5"/>`;
+    s += `<text x="${f.x}" y="${f.y+4}" text-anchor="middle" fill="#fff" font-size="10" font-weight="900" font-family="sans-serif">${f.label}</text>`;
   }
   return s + `</svg>`;
 }
