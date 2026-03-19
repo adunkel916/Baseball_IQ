@@ -434,3 +434,54 @@ body {
   height: auto;
   margin: 10px 0;
 }
+
+/* ============ PLAY SCREEN LAYOUT FIX ============ */
+
+/* 1. Force the main play screen into a single vertical column */
+#play-screen.container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 15px !important;
+  padding: 15px !important;
+  max-width: 480px !important;
+  margin: 0 auto !important;
+  min-height: 100vh !important;
+}
+
+/* 2. Ensure the Top Bar (Home/Score) stays at the top */
+.header-bar {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 10px !important;
+}
+
+/* 3. Stack Category, Diamond, and Question text vertically inside the card */
+.q-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+  gap: 15px !important;
+  text-align: center !important;
+}
+
+/* 4. Stack Answer Buttons vertically */
+.options-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  gap: 10px !important;
+}
+
+/* 5. Fix the Diamond Graphic squashing */
+.q-diamond {
+  width: 220px !important;
+  max-width: 90vw !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
