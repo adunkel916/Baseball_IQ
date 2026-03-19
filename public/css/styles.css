@@ -390,3 +390,47 @@ body {
   max-width: 250px;
   height: auto;
 }
+
+/* 1. THE SWITCH: This ensures only ONE screen shows at a time */
+.hidden {
+  display: none !important;
+}
+
+/* 2. THE STACK: This forces the active screen to be a vertical column */
+.container:not(.hidden) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* 3. THE CARD: This stacks the Category, Diamond, and Question */
+.q-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+  text-align: center;
+}
+
+/* 4. THE BUTTONS: Stacks the answers */
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+}
+
+/* 5. SIZE FIX: Keeps the field graphic from getting too huge */
+.q-diamond {
+  width: 220px;
+  height: auto;
+  margin: 10px 0;
+}
