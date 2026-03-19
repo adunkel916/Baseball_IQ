@@ -476,7 +476,7 @@ function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
     <filter id="glow"><feGaussianBlur stdDeviation="2" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
   </defs>`;
   s += `<rect x="0" y="0" width="400" height="400" fill="#0d1b0d"/>`;
-  s += `<image href="/images/field.jpg" x="0" y="8" width="400" height="368"/>`;
+  s += `<image href="images/field.jpg" x="0" y="8" width="400" height="368"/>`;
 
   // Ball paths
   for (const seg of ballPath) {
@@ -529,23 +529,23 @@ function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
 
 
 // ============ GAME STATE ============
-const correctSound = new Audio('/sounds/hit.mp3');
-const wrongSound = new Audio('/sounds/strike.m4a');
+const correctSound = new Audio('sounds/hit.mp3');
+const wrongSound = new Audio('sounds/strike.m4a');
 
 // NEW: Walkup Song Directory
 const walkupSongs = {
-  "jackson": new Audio('/sounds/jackson.m4a'),
-  "andres": new Audio('/sounds/andres.m4a'),
-  "andrew": new Audio('/sounds/andrew.m4a'),
-  "caleb": new Audio('/sounds/caleb.m4a'),
-  "dallas": new Audio('/sounds/dallas.m4a'),
-  "dominic": new Audio('/sounds/dominic.m4a'),
-  "elliott": new Audio('/sounds/elliott.m4a'),
-  "gio": new Audio('/sounds/gio.m4a'),
-  "johnny": new Audio('/sounds/johnny.m4a'),
-  "liam": new Audio('/sounds/liam.m4a'),
-  "matthew": new Audio('/sounds/matthew.m4a'),
-  "weston": new Audio('/sounds/weston.m4a')
+  "jackson": new Audio('sounds/jackson.m4a'),
+  "andres": new Audio('sounds/andres.m4a'),
+  "andrew": new Audio('sounds/andrew.m4a'),
+  "caleb": new Audio('sounds/caleb.m4a'),
+  "dallas": new Audio('sounds/dallas.m4a'),
+  "dominic": new Audio('sounds/dominic.m4a'),
+  "elliott": new Audio('sounds/elliott.m4a'),
+  "gio": new Audio('sounds/gio.m4a'),
+  "johnny": new Audio('sounds/johnny.m4a'),
+  "liam": new Audio('sounds/liam.m4a'),
+  "matthew": new Audio('sounds/matthew.m4a'),
+  "weston": new Audio('sounds/weston.m4a')
   };
 
 let currentWalkup = null; // Keeps track of the active song
