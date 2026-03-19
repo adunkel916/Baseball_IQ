@@ -118,8 +118,11 @@ body {
   margin: 10px 0;
 }
 
-.diamond-wrap svg {
+.diamond-wrap {
   width: 100%;
-  height: auto;
-  filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+  max-width: 320px;
+  min-height: 320px; /* Forces the space to stay open */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
