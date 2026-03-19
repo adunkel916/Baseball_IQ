@@ -22,9 +22,9 @@ const FIELDERS = [
 
 function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
   function rp(p) { return (typeof p==="object") ? p : (POS[p]||{x:200,y:200}); }
-  let s = `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">`;
+  let s = `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="background:transparent">`;
   
-  // High-Fidelity Field
+  // Vector Field
   s += `<circle cx="200" cy="200" r="195" fill="#0a1a0d" />`;
   s += `<circle cx="200" cy="200" r="185" fill="#1b3d21" />`;
   s += `<rect x="100" y="100" width="200" height="200" fill="#5d4037" transform="rotate(45 200 200)" />`;
@@ -33,7 +33,7 @@ function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
   s += `<line x1="200" y1="330" x2="365" y2="165" stroke="rgba(255,255,255,0.4)" stroke-width="2" />`;
   s += `<line x1="200" y1="330" x2="35" y2="165" stroke="rgba(255,255,255,0.4)" stroke-width="2" />`;
 
-  // Ball Path with Marker
+  // Ball Path with Ball Marker
   for (const seg of (ballPath || [])) {
     const from=rp(seg.from), to=rp(seg.to);
     let col = seg.type==="hit" ? "#ffffff" : (seg.type==="overthrow" ? "#ff4444" : "#5cd672");
@@ -48,7 +48,7 @@ function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
   const baseCoords = [{x:200,y:330},{x:300,y:230},{x:200,y:130},{x:100,y:230}];
   baseCoords.forEach(b => s += `<rect x="${b.x-6}" y="${b.y-6}" width="12" height="12" fill="#fff" transform="rotate(45 ${b.x} ${b.y})" />`);
 
-  // Flashing Runners
+  // Runners (Flashing)
   runners.forEach(r => {
     const p = POS[r];
     if (p) {
@@ -123,6 +123,7 @@ function handleAnswer(btn) {
   $("feedback").classList.remove("hidden");
   $("feedback-text").textContent = (isCorrect ? "✅ " : "❌ ") + btn.dataset.feedback;
   $("next-wrap").classList.remove("hidden");
+  $("next-btn").textContent = currentQ+1 >= questions.length ? "RESULTS" : "NEXT PLAY →";
 }
 
 function showScreen(id) { ["menu-screen","play-screen","results-screen"].forEach(s => $(s).classList.toggle("hidden", s !== id)); }
