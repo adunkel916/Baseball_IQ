@@ -267,7 +267,6 @@ body {
 }
 .option-btn:hover:not(:disabled) {
   border-color: var(--border-active); background: var(--card-hover);
-  transform: translateX(6px);
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 .option-btn:disabled { cursor: default; }
