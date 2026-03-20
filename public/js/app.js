@@ -27,9 +27,9 @@ const SCENARIOS = [
     runners:["2B"], yourPosition:"RF", emoji:"⚡",
     ballPath:[{from:"HOME", to:"3Bf", type:"hit"}, {from:"3Bf", to:"past1B", type:"overthrow"}],
     options:[
-      {text:"Stay in right field and watch", correct:false, feedback:"The ball got past 1st — if nobody is there, the runner could take extra bases!"},
+      {text:"Stay in right field and watch", correct:false, feedback:"The ball got past 1st base. If nobody is there, the runner could take extra bases!"},
       {text:"Run to back up 1st base", correct:true, feedback:"Awesome! Right fielders always back up 1st base on overthrows from the infield."},
-      {text:"Run to cover 2nd base", correct:false, feedback:"The throw went to 1st base, so that's where you need to back up!"}
+      {text:"Run to cover 2nd base", correct:false, feedback:"The throw went to 1st base, so that is where you need to back up!"}
     ],
   },
   {
@@ -39,7 +39,7 @@ const SCENARIOS = [
     runners:["1B"], yourPosition:"RC", emoji:"🎯",
     ballPath:[{from:"HOME", to:"3Bf", type:"hit"}, {from:"3Bf", to:"past2B", type:"overthrow"}],
     options:[
-      {text:"Run to back up 2nd base", correct:true, feedback:"That's it! The throw got past 2nd base and you're the closest outfielder."},
+      {text:"Run to back up 2nd base", correct:true, feedback:"That is it! The throw got past 2nd base and you're the closest outfielder."},
       {text:"Stay where you are", correct:false, feedback:"If the ball gets past everyone, the runners could advance! Always hustle in!"},
       {text:"Run to back up 3rd base", correct:false, feedback:"The throw went to 2nd base, not 3rd."}
     ],
@@ -53,7 +53,7 @@ const SCENARIOS = [
     options:[
       {text:"Standing in right field", correct:false, feedback:"You should have been moving the moment the ball was hit!"},
       {text:"Behind 1st base, ready to grab the dropped ball", correct:true, feedback:"PERFECT! You were already backing up because you started running as soon as the ball was hit!"},
-      {text:"Running toward 2nd base", correct:false, feedback:"The throw is going to 1st — that's where you need to be backing up!"}
+      {text:"Running toward 2nd base", correct:false, feedback:"The throw is going to 1st base. That is where you need to be backing up!"}
     ],
   },
   {
@@ -101,7 +101,7 @@ const SCENARIOS = [
     options:[
       {text:"Stay in left field and watch", correct:false, feedback:"Never just watch! If that throw gets past 3rd, someone needs to be there!"},
       {text:"Run to back up 3rd base", correct:true, feedback:"Heads-up play! Left fielders back up 3rd base on throws from right field."},
-      {text:"Run to cover 2nd base", correct:false, feedback:"You need to back up where the throw is going — 3rd base!"}
+      {text:"Run to cover 2nd base", correct:false, feedback:"You need to back up where the throw is going. It is at 3rd base!"}
     ],
   },
   {
@@ -111,8 +111,8 @@ const SCENARIOS = [
     runners:["1B","3B"], yourPosition:"RC", emoji:"🌟",
     ballPath:[{from:"HOME", to:"SS", type:"hit"}, {from:"SS", to:"past2B", type:"overthrow"}],
     options:[
-      {text:"Stay where you are", correct:false, feedback:"The throw got past 2nd base — if nobody backs it up, runners will advance!"},
-      {text:"Run to back up 2nd base", correct:true, feedback:"That's the play! When a throw goes to 2nd base, outfielders nearby need to back it up."},
+      {text:"Stay where you are", correct:false, feedback:"The throw got past 2nd base. If nobody backs it up, runners will advance!"},
+      {text:"Run to back up 2nd base", correct:true, feedback:"That is the play! When a throw goes to 2nd base, outfielders nearby need to back it up."},
       {text:"Run to back up 3rd base", correct:false, feedback:"The throw went to 2nd base, not 3rd."}
     ],
   },
@@ -125,7 +125,7 @@ const SCENARIOS = [
     options:[
       {text:"Just let the other person get it", correct:false, feedback:"What if they think the same thing? Someone needs to call it!"},
       {text:"Yell 'BALL! BALL! BALL!' loud and clear", correct:true, feedback:"YES! Communication wins games! Yell 'BALL!' so everyone knows you've got it."},
-      {text:"Both try to catch it at the same time", correct:false, feedback:"That's how collisions happen!"}
+      {text:"Both try to catch it at the same time", correct:false, feedback:"That is how collisions happen!"}
     ],
   },
   {
@@ -135,8 +135,8 @@ const SCENARIOS = [
     runners:["1B"], yourPosition:null, emoji:"🧠",
     ballPath:[{from:"HOME", to:"2Bf", type:"hit"}],
     options:[
-      {text:"Stay on 1st base", correct:false, feedback:"You have to run! It's a force play — you MUST run to 2nd!"},
-      {text:"Run to 2nd base because it's a force play", correct:true, feedback:"That's right! With a runner on 1st, you're FORCED to run to 2nd when the ball is hit on the ground."},
+      {text:"Stay on 1st base", correct:false, feedback:"You have to run! It is a force play. You MUST run to 2nd!"},
+      {text:"Run to 2nd base because it's a force play", correct:true, feedback:"That is right! With a runner on 1st, you're FORCED to run to 2nd when the ball is hit on the ground."},
       {text:"Run back toward home plate", correct:false, feedback:"You can't run backwards!"}
     ],
   },
@@ -171,9 +171,9 @@ const SCENARIOS = [
     runners:["1B"], yourPosition:null, emoji:"🧠",
     ballPath:[{from:"HOME", to:"LF", type:"hit"}],
     options:[
-      {text:"Keep running to 2nd base", correct:false, feedback:"The ball was caught — that's an out! Get back to 1st base!"},
+      {text:"Keep running to 2nd base", correct:false, feedback:"The ball was caught. That is an out! Get back to 1st base!"},
       {text:"Get back to 1st base as fast as you can", correct:true, feedback:"Correct! When a fly ball is caught, you need to get back to your base before the ball gets there."},
-      {text:"Run to the dugout", correct:false, feedback:"Only the batter is out! You're still a runner — get back to 1st!"}
+      {text:"Run to the dugout", correct:false, feedback:"Only the batter is out! You're still a runner. Get back to 1st!"}
     ],
   },
   {
@@ -207,7 +207,7 @@ const SCENARIOS = [
     runners:["1B"], yourPosition:null, emoji:"🧠",
     ballPath:[{from:"HOME", to:"SS", type:"hit"}],
     options:[
-      {text:"Throw to 2nd base for the force out", correct:true, feedback:"That's right! Get the lead runner — a quick toss to 2nd base is the priority!"},
+      {text:"Throw to 2nd base for the force out", correct:true, feedback:"That is right! Get the lead runner. A quick toss to 2nd base is the priority!"},
       {text:"Throw to 1st base", correct:false, feedback:"You could get the out at 1st, but getting the lead runner at 2nd is smarter!"},
       {text:"Hold onto the ball", correct:false, feedback:"You need to make a throw! Get the lead runner at 2nd!"}
     ],
@@ -220,7 +220,7 @@ const SCENARIOS = [
     ballPath:[{from:"HOME", to:{x:300,y:90}, type:"hit"}],
     options:[
       {text:"Let the right fielder get it", correct:false, feedback:"Don't assume! Both need to go after it, and whoever is closest calls for it!"},
-      {text:"Both go after it and the closest one yells 'BALL!'", correct:true, feedback:"That's it! The one who gets there first calls 'BALL!' and the other backs them up."},
+      {text:"Both go after it and the closest one yells 'BALL!'", correct:true, feedback:"That is it! The one who gets there first calls 'BALL!' and the other backs them up."},
       {text:"Stop and wait", correct:false, feedback:"Never stop! Every second matters!"}
     ],
   },
@@ -231,7 +231,7 @@ const SCENARIOS = [
     runners:["1B"], yourPosition:null, emoji:"🧠",
     ballPath:[{from:"HOME", to:"1Bf", type:"hit"}],
     options:[
-      {text:"Stay on 1st base", correct:false, feedback:"You can't stay! It's a force play — run to 2nd!"},
+      {text:"Stay on 1st base", correct:false, feedback:"You can't stay! It is a force play. Run to 2nd!"},
       {text:"Run hard to 2nd base", correct:true, feedback:"Correct! You're forced to run on a ground ball. Run hard to 2nd!"},
       {text:"Run back toward home plate", correct:false, feedback:"You can never run backwards!"}
     ],
@@ -245,7 +245,7 @@ const SCENARIOS = [
     options:[
       {text:"Stay on 2nd base", correct:false, feedback:"On a base hit, you should be running! A single to RF means you can probably score!"},
       {text:"Run to 3rd and look at your coach", correct:true, feedback:"Yes! Run hard and look at your 3rd base coach. Listen to your coaches!"},
-      {text:"Run straight home without looking", correct:false, feedback:"Don't put your head down! Look at your coach — they can see the ball!"}
+      {text:"Run straight home without looking", correct:false, feedback:"Don't put your head down! Look at your coach. They can see the ball!"}
     ],
   },
   {
@@ -256,7 +256,7 @@ const SCENARIOS = [
     ballPath:[{from:"HOME", to:"LF", type:"hit"}],
     options:[
       {text:"Run straight to 1st and stop", correct:false, feedback:"If the ball is in the outfield, you might be able to get to 2nd!"},
-      {text:"Round 1st base and look to see if you can go to 2nd", correct:true, feedback:"That's it! Round 1st and look at your coach and the ball. Go if you can!"},
+      {text:"Round 1st base and look to see if you can go to 2nd", correct:true, feedback:"That is it! Round 1st and look at your coach and the ball. Go if you can!"},
       {text:"Run past 1st base into right field", correct:false, feedback:"Round the base toward 2nd, not away from it!"}
     ],
   },
@@ -280,7 +280,7 @@ const SCENARIOS = [
     ballPath:[{from:"HOME", to:"1Bf", type:"hit"}],
     options:[
       {text:"Stay on the mound", correct:false, feedback:"The 1st baseman has to field the ball! Someone needs to cover the bag!"},
-      {text:"Run to cover 1st base", correct:true, feedback:"That's right! When the 1st baseman fields the ball, the pitcher MUST cover the bag!"},
+      {text:"Run to cover 1st base", correct:true, feedback:"That is right! When the 1st baseman fields the ball, the pitcher MUST cover the bag!"},
       {text:"Run home", correct:false, feedback:"No play at home right now. Cover 1st!"}
     ],
   },
@@ -340,8 +340,8 @@ const SCENARIOS = [
     ballPath:[{from:"HOME", to:"SS", type:"hit"}],
     options:[
       {text:"Turn your head away", correct:false, feedback:"If you turn away, you lose the ball! Keep your eyes on it!"},
-      {text:"Block the ball with your body", correct:true, feedback:"That's right! Knock it down and keep it in front of you so you can make the throw!"},
-      {text:"Jump out of the way", correct:false, feedback:"Be tough — block it and keep it in front!"}
+      {text:"Block the ball with your body", correct:true, feedback:"That is right! Knock it down and keep it in front of you so you can make the throw!"},
+      {text:"Jump out of the way", correct:false, feedback:"Be tough. Block it and keep it in front!"}
     ],
   },
   {
@@ -364,7 +364,7 @@ const SCENARIOS = [
     ballPath:[],
     options:[
       {text:"Stand right on the bag", correct:false, feedback:"You don't need to hold runners on! Be ready for a ground ball!"},
-      {text:"Stand in your normal fielding position", correct:true, feedback:"That's right! Be in your spot and ready to make a play on the ball!"},
+      {text:"Stand in your normal fielding position", correct:true, feedback:"That is right! Be in your spot and ready to make a play on the ball!"},
       {text:"Stand behind the runner", correct:false, feedback:"Get in your fielding position!"}
     ],
   },
@@ -411,7 +411,7 @@ const SCENARIOS = [
     runners: ["1B"], yourPosition: "P", emoji: "🏃",
     ballPath: [{ from: "HOME", to: "LF", type: "hit" }, { from: "LF", to: "3B", type: "throw" }],
     options: [
-      { text: "Back up 2nd base", correct: false, feedback: "The runner from 1st is headed to 3rd. That's where the big play is!" },
+      { text: "Back up 2nd base", correct: false, feedback: "The runner from 1st is headed to 3rd. That is where the big play is!" },
       { text: "Back up 3rd base in foul territory", correct: true, feedback: "YES! Get deep into foul territory behind 3rd. You're the only one who can stop a run if the throw is wild!" },
       { text: "Stay on the mound", correct: false, feedback: "Move! You are the most important backup player on the field right now." }
     ],
@@ -491,7 +491,6 @@ const $ = (id) => document.getElementById(id);
 function initMenu() {
   const diamondEl = $("menu-diamond");
   const catButtonsEl = $("category-buttons");
-  
   if (!diamondEl || !catButtonsEl) return; 
 
   diamondEl.innerHTML = buildDiamond([], null, []);
@@ -512,7 +511,6 @@ function startGame() {
   currentQ = 0; score = 0; streak = 0; bestStreak = 0;
   
   if (currentWalkup) { currentWalkup.pause(); currentWalkup.currentTime = 0; currentWalkup = null; }
-  
   const name = $("player-name").value.trim().toLowerCase();
   if (walkupSongs[name]) {
       currentWalkup = walkupSongs[name];
@@ -585,29 +583,18 @@ function showScreen(id) {
   });
 }
 
-$("start-btn").addEventListener("click", startGame);
-$("next-btn").addEventListener("click", () => {
-  if (currentQ + 1 >= questions.length) {
-    showResults();
-  } else {
-    currentQ++;
-    renderQuestion();
-  }
-});
-
-$("play-again-btn").addEventListener("click", () => {
-  startGame();
-});
-
-$("main-menu-btn").addEventListener("click", () => {
-  showScreen("menu-screen");
+// Ensure elements exist before attaching events to prevent silent failures
+document.addEventListener("DOMContentLoaded", () => {
   initMenu();
+  $("start-btn").addEventListener("click", startGame);
+  $("next-btn").addEventListener("click", () => {
+    if (currentQ + 1 >= questions.length) showResults(); else { currentQ++; renderQuestion(); }
+  });
+  $("play-again-btn").addEventListener("click", () => { startGame(); });
+  $("main-menu-btn").addEventListener("click", () => { showScreen("menu-screen"); initMenu(); });
+  $("quit-btn").addEventListener("click", () => {
+    if (currentWalkup) { currentWalkup.pause(); currentWalkup.currentTime = 0; currentWalkup = null; }
+    showScreen("menu-screen");
+    initMenu();
+  });
 });
-
-$("quit-btn").addEventListener("click", () => {
-  if (currentWalkup) { currentWalkup.pause(); currentWalkup.currentTime = 0; currentWalkup = null; }
-  showScreen("menu-screen");
-  initMenu();
-});
-
-initMenu();
