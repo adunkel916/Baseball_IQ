@@ -47,6 +47,8 @@ body {
 
 /* UI COMPONENTS */
 .ui-section { width: 100%; display: flex; flex-direction: column; gap: 15px; }
+.input-group { width: 100%; }
+.input-group + .input-group { margin-top: 5px; }
 .ui-label { font-size: 10px; font-weight: 800; color: var(--text-dim); letter-spacing: 2px; margin-bottom: 8px; display: block; text-align: center; }
 
 .name-input {
@@ -60,18 +62,22 @@ body {
   text-align: center;
 }
 
-.cat-wrap { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.cat-wrap { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 5px 0; }
 .cat-btn {
-  padding: 10px 16px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 30px;
+  padding: 12px 18px;
+  background: rgba(62, 168, 83, 0.08);
+  border: 1.5px solid rgba(62, 168, 83, 0.25);
+  border-radius: 10px;
   color: var(--text-dim);
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 800;
   cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
 }
-.cat-btn.active { background: var(--green); color: #000; border-color: var(--green-bright); }
+.cat-btn:hover { background: rgba(62, 168, 83, 0.15); border-color: rgba(62, 168, 83, 0.4); color: var(--text); }
+.cat-btn.active { background: var(--green); color: #000; border-color: var(--green-bright); box-shadow: 0 0 12px rgba(62, 168, 83, 0.4); }
 
 /* SHARED GREEN BUTTONS */
 .start-btn, .next-btn, #play-again-btn {
@@ -107,7 +113,7 @@ body {
 
 .diamond-container { width: 100%; display: flex; justify-content: center; }
 .diamond-wrap { width: 100%; max-width: 340px; aspect-ratio: 1; }
-.home-diamond { max-width: 180px; opacity: 0.4; }
+.home-diamond { max-width: 240px; opacity: 0.7; filter: drop-shadow(0 0 20px rgba(62, 168, 83, 0.3)); }
 
 .situation-card { background: var(--surface); padding: 22px; border-radius: 16px; border-left: 6px solid var(--green); width: 100%; }
 .sit-desc { font-size: 15px; color: var(--text); margin-bottom: 10px; line-height: 1.5; }
@@ -138,4 +144,3 @@ body {
 .stat-val { display: block; font-family: var(--font-display); font-size: 28px; color: #fff; }
 .stat-lab { font-size: 8px; font-weight: 800; color: var(--text-dim); letter-spacing: 1px; }
 .ghost-btn { background: none; border: 1px solid var(--border); color: var(--text-dim); padding: 16px; width: 100%; border-radius: 12px; font-weight: 800; cursor: pointer; text-transform: uppercase; }
-
