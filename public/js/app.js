@@ -622,7 +622,7 @@ function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
     }
   }
 
-  const baseCoords = [{x:200,y:330},{x:300,y:230},{x:200,y:130},{x:100,y:230}];
+  const baseCoords = [{x:200,y:330},{x:310,y:240},{x:200,y:100},{x:90,y:240}];
   baseCoords.forEach(b => s += `<rect x="${b.x-6}" y="${b.y-6}" width="12" height="12" fill="#fff" transform="rotate(45 ${b.x} ${b.y})" />`);
 
   (runners || []).forEach(r => {
