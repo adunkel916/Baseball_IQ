@@ -7,6 +7,19 @@ const POS = {
   "past1B":{x:350,y:230}, "past3B":{x:50,y:230}, "pastHOME":{x:200,y:370}, "past2B":{x:200,y:90},
 };
 
+const FIELDERS = [
+  {label:"P", x:200, y:220},
+  {label:"C", x:200, y:345},
+  {label:"1B", x:310, y:180},
+  {label:"2B", x:250, y:135},
+  {label:"SS", x:150, y:135},
+  {label:"3B", x:90, y:180},
+  {label:"LF", x:60, y:110},
+  {label:"LC", x:140, y:60},
+  {label:"RC", x:260, y:60},
+  {label:"RF", x:340, y:110},
+];
+
 const SCENARIOS = [
   {
     id:1, category:"Backing Up Overthrows",
@@ -464,28 +477,25 @@ function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
 }
 
 // ============ ENGINE ============
-let sounds = { hit: null, strike: null };
-let walkupSongs = {};
-try {
-  sounds = {
-    hit: new Audio('sounds/hit.mp3'),
-    strike: new Audio('sounds/strike.m4a')
-  };
-  walkupSongs = {
-    "jackson": new Audio('sounds/jackson.m4a'),
-    "andres": new Audio('sounds/andres.m4a'),
-    "andrew": new Audio('sounds/andrew.m4a'),
-    "caleb": new Audio('sounds/caleb.m4a'),
-    "dallas": new Audio('sounds/dallas.m4a'),
-    "dominic": new Audio('sounds/dominic.m4a'),
-    "elliott": new Audio('sounds/elliott.m4a'),
-    "gio": new Audio('sounds/gio.m4a'),
-    "johnny": new Audio('sounds/johnny.m4a'),
-    "liam": new Audio('sounds/liam.m4a'),
-    "matthew": new Audio('sounds/matthew.m4a'),
-    "weston": new Audio('sounds/weston.m4a')
-  };
-} catch(e) { console.warn("Audio init skipped:", e); }
+const sounds = {
+  hit: new Audio('sounds/hit.mp3'),
+  strike: new Audio('sounds/strike.m4a')
+};
+
+const walkupSongs = {
+  "jackson": new Audio('sounds/jackson.m4a'),
+  "andres": new Audio('sounds/andres.m4a'),
+  "andrew": new Audio('sounds/andrew.m4a'),
+  "caleb": new Audio('sounds/caleb.m4a'),
+  "dallas": new Audio('sounds/dallas.m4a'),
+  "dominic": new Audio('sounds/dominic.m4a'),
+  "elliott": new Audio('sounds/elliott.m4a'),
+  "gio": new Audio('sounds/gio.m4a'),
+  "johnny": new Audio('sounds/johnny.m4a'),
+  "liam": new Audio('sounds/liam.m4a'),
+  "matthew": new Audio('sounds/matthew.m4a'),
+  "weston": new Audio('sounds/weston.m4a')
+};
 
 let currentWalkup = null;
 let questions = [], currentQ = 0, score = 0, streak = 0, bestStreak = 0, categoryFilter = "All", selected = null;
@@ -554,11 +564,13 @@ function handleAnswer(btn) {
   });
   
   if (isCorrect) { 
-    if (sounds.hit) { sounds.hit.currentTime = 0; sounds.hit.play().catch(e => console.log(e)); }
+    sounds.hit.currentTime = 0;
+    sounds.hit.play().catch(e => console.log(e)); 
     score++; streak++; 
     if (streak > bestStreak) bestStreak = streak;
   } else { 
-    if (sounds.strike) { sounds.strike.currentTime = 0; sounds.strike.play().catch(e => console.log(e)); }
+    sounds.strike.currentTime = 0;
+    sounds.strike.play().catch(e => console.log(e)); 
     streak = 0; 
     btn.style.borderColor = "#ff4444"; 
   }
