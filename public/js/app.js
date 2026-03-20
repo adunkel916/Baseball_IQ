@@ -428,6 +428,174 @@ const SCENARIOS = [
       { text: "Back up 3rd base in foul territory", correct: true, feedback: "YES! Get deep into foul territory behind 3rd. You're the only one who can stop a run if the throw is wild!" },
       { text: "Stay on the mound", correct: false, feedback: "Move! You are the most important backup player on the field right now." }
     ],
+  },
+  {
+    id: 35, category: "Infield Backups",
+    situation: "Nobody on base. Ground ball to the 2nd baseman who throws to 1st.",
+    question: "You're the CATCHER. What should you do?",
+    runners: [], yourPosition: "C", emoji: "🛡️",
+    ballPath: [{ from: "HOME", to: "2Bf", type: "hit" }, { from: "2Bf", to: "1B", type: "throw" }],
+    options: [
+      { text: "Stay behind home plate", correct: false, feedback: "Don't just stand there! The throw could get past the 1st baseman!" },
+      { text: "Trail the batter-runner down toward 1st base", correct: true, feedback: "That is right! Catchers trail every ground ball play to 1st. You are the last line of defense!" },
+      { text: "Run to cover 3rd base", correct: false, feedback: "Nobody is heading to 3rd. The play is at 1st base!" }
+    ],
+  },
+  {
+    id: 36, category: "Infield Backups",
+    situation: "Nobody on base. Ground ball to the 3rd baseman who throws to 1st.",
+    question: "You're the PITCHER. Where do you go?",
+    runners: [], yourPosition: "P", emoji: "⚾",
+    ballPath: [{ from: "HOME", to: "3Bf", type: "hit" }, { from: "3Bf", to: "1B", type: "throw" }],
+    options: [
+      { text: "Stay on the mound and watch", correct: false, feedback: "Never just watch! You have a job on every single play!" },
+      { text: "Move toward the 1st base line in case of a bad throw", correct: true, feedback: "Yes! Pitchers should always move toward the play. If the throw is off, you can help!" },
+      { text: "Cover home plate", correct: false, feedback: "Nobody is running home. Move toward where the action is!" }
+    ],
+  },
+  {
+    id: 37, category: "Infield Backups",
+    situation: "Runner on 2nd base. Base hit to center field. The runner is heading home!",
+    question: "You're the PITCHER. Where do you go?",
+    runners: ["2B"], yourPosition: "P", emoji: "🏃",
+    ballPath: [{ from: "HOME", to: "LC", type: "hit" }, { from: "LC", to: "HOME", type: "throw" }],
+    options: [
+      { text: "Back up home plate", correct: true, feedback: "PERFECT! When a throw is coming home, the pitcher backs up the catcher. If the ball gets past, you stop the run!" },
+      { text: "Cover 2nd base", correct: false, feedback: "The big play is at home! Get behind the catcher!" },
+      { text: "Stay on the mound", correct: false, feedback: "The throw is coming to home plate. Get behind the catcher NOW!" }
+    ],
+  },
+  {
+    id: 38, category: "Infield Backups",
+    situation: "Runner on 1st base. Single hit into right field. The runner rounds 2nd and heads to 3rd.",
+    question: "You're the LEFT FIELDER. What is your job?",
+    runners: ["1B"], yourPosition: "LF", emoji: "💪",
+    ballPath: [{ from: "HOME", to: "RF", type: "hit" }, { from: "RF", to: "3B", type: "throw" }],
+    options: [
+      { text: "Stay in left field", correct: false, feedback: "If the throw from RF gets past 3rd, the runner scores! You need to be there!" },
+      { text: "Run to back up 3rd base", correct: true, feedback: "Heads-up play! Left fielders always back up 3rd base on throws from the right side of the field." },
+      { text: "Run to cover 2nd base", correct: false, feedback: "The throw is going to 3rd. Back up where the ball is going!" }
+    ],
+  },
+  {
+    id: 39, category: "Infield Backups",
+    situation: "Runner on 2nd base. Ground ball to 1st baseman who fields it and throws to the shortstop covering 2nd.",
+    question: "You're the LEFT CENTER FIELDER. What should you do?",
+    runners: ["2B"], yourPosition: "LC", emoji: "⚡",
+    ballPath: [{ from: "HOME", to: "1Bf", type: "hit" }, { from: "1Bf", to: "2B", type: "throw" }],
+    options: [
+      { text: "Stay in center field", correct: false, feedback: "If the throw gets past 2nd, the runner could score! Hustle in!" },
+      { text: "Run in to back up 2nd base", correct: true, feedback: "That is it! You are in the best position to stop a bad throw from getting into the outfield." },
+      { text: "Back up home plate", correct: false, feedback: "The throw is going to 2nd base. Back up where the ball is headed!" }
+    ],
+  },
+  {
+    id: 40, category: "Infield Backups",
+    situation: "Nobody on base. The batter hits a single to right field and tries to stretch it to 2nd.",
+    question: "You're the LEFT CENTER FIELDER. Where should you be?",
+    runners: [], yourPosition: "LC", emoji: "🌟",
+    ballPath: [{ from: "HOME", to: "RF", type: "hit" }, { from: "RF", to: "2B", type: "throw" }],
+    options: [
+      { text: "Stay in your normal position", correct: false, feedback: "The throw is coming to 2nd! If it gets through, the runner takes 3rd for free!" },
+      { text: "Move in to back up 2nd base on the throw from RF", correct: true, feedback: "Smart! Line yourself up behind 2nd base to catch any overthrow from right field." },
+      { text: "Run to back up 1st base", correct: false, feedback: "The runner already passed 1st. The play is at 2nd!" }
+    ],
+  },
+  {
+    id: 41, category: "Infield Backups",
+    situation: "Runner on 3rd base. Ground ball to the shortstop who throws to 1st.",
+    question: "You're the PITCHER. What do you do after the throw goes to 1st?",
+    runners: ["3B"], yourPosition: "P", emoji: "🛡️",
+    ballPath: [{ from: "HOME", to: "SS", type: "hit" }, { from: "SS", to: "1B", type: "throw" }],
+    options: [
+      { text: "Walk back to the mound", correct: false, feedback: "The runner on 3rd could try to score! You need to be ready at home!" },
+      { text: "Move toward home plate to back up the catcher in case the runner goes", correct: true, feedback: "YES! With a runner on 3rd, always be ready to cover home after the play at 1st." },
+      { text: "Run to back up 1st base", correct: false, feedback: "The right fielder backs up 1st. You need to watch that runner on 3rd!" }
+    ],
+  },
+  {
+    id: 42, category: "Infield Backups",
+    situation: "Runners on 1st and 2nd. Fly ball to right field is caught. Runners tag up!",
+    question: "You're the PITCHER. Where do you go?",
+    runners: ["1B", "2B"], yourPosition: "P", emoji: "🏃",
+    ballPath: [{ from: "HOME", to: "RF", type: "hit" }, { from: "RF", to: "3B", type: "throw" }],
+    options: [
+      { text: "Go back to the mound", correct: false, feedback: "The play isn't over! The runner from 2nd is tagging up to 3rd!" },
+      { text: "Back up 3rd base on the throw from right field", correct: true, feedback: "Great awareness! The throw is going to 3rd, and if it gets past, the runner could score!" },
+      { text: "Cover 1st base", correct: false, feedback: "The action is at 3rd base right now. Get behind 3rd!" }
+    ],
+  },
+  {
+    id: 43, category: "Infield Backups",
+    situation: "Nobody on base. Ground ball to the shortstop who throws to 1st.",
+    question: "You're the RIGHT FIELDER. What should you already be doing?",
+    runners: [], yourPosition: "RF", emoji: "🏃",
+    ballPath: [{ from: "HOME", to: "SS", type: "hit" }, { from: "SS", to: "1B", type: "throw" }],
+    options: [
+      { text: "Standing still and watching the play", correct: false, feedback: "You should be moving the moment the ball is hit! Every throw to 1st needs a backup!" },
+      { text: "Running toward 1st base to back up the throw", correct: true, feedback: "That is hustle! Right fielders back up EVERY throw to 1st base. Start moving on contact!" },
+      { text: "Moving toward center field", correct: false, feedback: "The throw is going to 1st base. That is where you need to be!" }
+    ],
+  },
+  {
+    id: 44, category: "Infield Backups",
+    situation: "Runner on 2nd. Single hit into right center. The runner rounds 3rd and heads home!",
+    question: "You're the PITCHER. What is your job?",
+    runners: ["2B"], yourPosition: "P", emoji: "🛡️",
+    ballPath: [{ from: "HOME", to: "RC", type: "hit" }, { from: "RC", to: "HOME", type: "throw" }],
+    options: [
+      { text: "Back up home plate behind the catcher", correct: true, feedback: "PERFECT! You are the last line of defense. If the throw gets past the catcher, you save the extra base!" },
+      { text: "Cover 2nd base", correct: false, feedback: "The play is at home! Get behind the catcher!" },
+      { text: "Stay near the mound", correct: false, feedback: "Close, but not enough! Get all the way behind home plate!" }
+    ],
+  },
+  {
+    id: 45, category: "Infield Backups",
+    situation: "Runner on 1st. Ground ball to the 2nd baseman who flips to the shortstop covering 2nd.",
+    question: "You're the LEFT CENTER FIELDER. What do you do?",
+    runners: ["1B"], yourPosition: "LC", emoji: "⚡",
+    ballPath: [{ from: "HOME", to: "2Bf", type: "hit" }, { from: "2Bf", to: "2B", type: "throw" }],
+    options: [
+      { text: "Stay where you are", correct: false, feedback: "If that flip goes wide, the ball is headed right at you. Be ready!" },
+      { text: "Move in behind 2nd base to back up the throw", correct: true, feedback: "That is right! On any throw to 2nd, outfielders behind the play need to move in as backup." },
+      { text: "Move toward left field", correct: false, feedback: "You are moving the wrong way! The throw is at 2nd base!" }
+    ],
+  },
+  {
+    id: 46, category: "Infield Backups",
+    situation: "Runner on 3rd. Fly ball caught in center field. The runner tags up!",
+    question: "You're the PITCHER. Where should you be?",
+    runners: ["3B"], yourPosition: "P", emoji: "🛡️",
+    ballPath: [{ from: "HOME", to: "LC", type: "hit" }, { from: "LC", to: "HOME", type: "throw" }],
+    options: [
+      { text: "On the mound waiting for the ball back", correct: false, feedback: "The runner is tagging and heading home! A throw is coming to the plate!" },
+      { text: "Behind home plate backing up the catcher", correct: true, feedback: "YES! The throw is coming home and you need to be behind the catcher in case it gets through!" },
+      { text: "Covering 3rd base", correct: false, feedback: "The runner already left 3rd. The play is at home!" }
+    ],
+  },
+  {
+    id: 47, category: "Infield Backups",
+    situation: "Nobody on base. The batter hits a double into the left center gap.",
+    question: "You're the SHORTSTOP. What is your job?",
+    runners: [], yourPosition: "SS", emoji: "🎯",
+    ballPath: [{ from: "HOME", to: "LC", type: "hit" }],
+    options: [
+      { text: "Stay at your position", correct: false, feedback: "The ball is in the outfield! You need to get into relay position!" },
+      { text: "Go out toward left center as the relay man", correct: true, feedback: "That is it! On balls to left center, the shortstop goes out as the cutoff so the outfielder has a target!" },
+      { text: "Cover 2nd base", correct: false, feedback: "Someone else can cover 2nd. Your job is to be the relay!" }
+    ],
+  },
+  {
+    id: 48, category: "Infield Backups",
+    situation: "Nobody on base. The batter hits a double into the right center gap.",
+    question: "You're the 2ND BASEMAN. What is your job?",
+    runners: [], yourPosition: "2B", emoji: "🎯",
+    ballPath: [{ from: "HOME", to: "RC", type: "hit" }],
+    options: [
+      { text: "Cover 1st base", correct: false, feedback: "The runner already passed 1st! You need to help get the ball back in!" },
+      { text: "Go out toward right center as the relay man", correct: true, feedback: "YES! On balls to right center, the 2nd baseman goes out as the relay so the outfielder has a short throw!" },
+      { text: "Stay at your position and wait", correct: false, feedback: "Don't stand still! Get out there and be the relay!" }
+    ],
   }
 ];
 
