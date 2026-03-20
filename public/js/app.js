@@ -464,25 +464,28 @@ function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
 }
 
 // ============ ENGINE ============
-const sounds = {
-  hit: new Audio('sounds/hit.mp3'),
-  strike: new Audio('sounds/strike.m4a')
-};
-
-const walkupSongs = {
-  "jackson": new Audio('sounds/jackson.m4a'),
-  "andres": new Audio('sounds/andres.m4a'),
-  "andrew": new Audio('sounds/andrew.m4a'),
-  "caleb": new Audio('sounds/caleb.m4a'),
-  "dallas": new Audio('sounds/dallas.m4a'),
-  "dominic": new Audio('sounds/dominic.m4a'),
-  "elliott": new Audio('sounds/elliott.m4a'),
-  "gio": new Audio('sounds/gio.m4a'),
-  "johnny": new Audio('sounds/johnny.m4a'),
-  "liam": new Audio('sounds/liam.m4a'),
-  "matthew": new Audio('sounds/matthew.m4a'),
-  "weston": new Audio('sounds/weston.m4a')
-};
+let sounds = { hit: null, strike: null };
+let walkupSongs = {};
+try {
+  sounds = {
+    hit: new Audio('sounds/hit.mp3'),
+    strike: new Audio('sounds/strike.m4a')
+  };
+  walkupSongs = {
+    "jackson": new Audio('sounds/jackson.m4a'),
+    "andres": new Audio('sounds/andres.m4a'),
+    "andrew": new Audio('sounds/andrew.m4a'),
+    "caleb": new Audio('sounds/caleb.m4a'),
+    "dallas": new Audio('sounds/dallas.m4a'),
+    "dominic": new Audio('sounds/dominic.m4a'),
+    "elliott": new Audio('sounds/elliott.m4a'),
+    "gio": new Audio('sounds/gio.m4a'),
+    "johnny": new Audio('sounds/johnny.m4a'),
+    "liam": new Audio('sounds/liam.m4a'),
+    "matthew": new Audio('sounds/matthew.m4a'),
+    "weston": new Audio('sounds/weston.m4a')
+  };
+} catch(e) { console.warn("Audio init skipped:", e); }
 
 let currentWalkup = null;
 let questions = [], currentQ = 0, score = 0, streak = 0, bestStreak = 0, categoryFilter = "All", selected = null;
@@ -551,13 +554,11 @@ function handleAnswer(btn) {
   });
   
   if (isCorrect) { 
-    sounds.hit.currentTime = 0;
-    sounds.hit.play().catch(e => console.log(e)); 
+    if (sounds.hit) { sounds.hit.currentTime = 0; sounds.hit.play().catch(e => console.log(e)); }
     score++; streak++; 
     if (streak > bestStreak) bestStreak = streak;
   } else { 
-    sounds.strike.currentTime = 0;
-    sounds.strike.play().catch(e => console.log(e)); 
+    if (sounds.strike) { sounds.strike.currentTime = 0; sounds.strike.play().catch(e => console.log(e)); }
     streak = 0; 
     btn.style.borderColor = "#ff4444"; 
   }
