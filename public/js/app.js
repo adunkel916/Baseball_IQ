@@ -380,6 +380,42 @@ const SCENARIOS = [
       {text:"Cover 1st base", correct:false, feedback:"The 1st baseman covers 1st. You are the cutoff!"}
     ],
   },
+  {
+    id: 32, category: "Infield Backups",
+    situation: "Nobody on base. Ground ball to the shortstop.",
+    question: "You're the CATCHER. What is your job?",
+    runners: [], yourPosition: "C", emoji: "🛡️",
+    ballPath: [{ from: "HOME", to: "SS", type: "hit" }, { from: "SS", to: "1B", type: "throw" }],
+    options: [
+      { text: "Stay at home plate and watch", correct: false, feedback: "Don't just watch! If the throw is wild, the runner gets 2nd base for free." },
+      { text: "Run down the line to back up 1st base", correct: true, feedback: "PERFECT! Always trail the runner to 1st on infield grounders. You are the safety net!" },
+      { text: "Run to the mound", correct: false, feedback: "The play is at 1st base. Get down there to help your teammate!" }
+    ],
+  },
+  {
+    id: 33, category: "Infield Backups",
+    situation: "Nobody on base. Single hit into left field.",
+    question: "You're the PITCHER. Where do you go to back up 2nd base?",
+    runners: [], yourPosition: "P", emoji: "⚾",
+    ballPath: [{ from: "HOME", to: "LF", type: "hit" }, { from: "LF", to: "2B", type: "throw" }],
+    options: [
+      { text: "Stay on the pitcher's mound", correct: false, feedback: "Never stand still! If the throw from left field is wild, the batter will take 2nd base." },
+      { text: "Run to a spot well behind 2nd base", correct: true, feedback: "Smart! Line yourself up with the throw from LF to 2B so you can catch any overthrows." },
+      { text: "Run to 1st base", correct: false, feedback: "The runner is going to 2nd. You need to back up the base where the play is happening!" }
+    ],
+  },
+  {
+    id: 34, category: "Infield Backups",
+    situation: "Runner on 1st base. Single hit into left field.",
+    question: "You're the PITCHER. What base should you be backing up?",
+    runners: ["1B"], yourPosition: "P", emoji: "🏃",
+    ballPath: [{ from: "HOME", to: "LF", type: "hit" }, { from: "LF", to: "3B", type: "throw" }],
+    options: [
+      { text: "Back up 2nd base", correct: false, feedback: "The runner from 1st is headed to 3rd. That's where the big play is!" },
+      { text: "Back up 3rd base in foul territory", correct: true, feedback: "YES! Get deep into foul territory behind 3rd. You're the only one who can stop a run if the throw is wild!" },
+      { text: "Stay on the mound", correct: false, feedback: "Move! You are the most important backup player on the field right now." }
+    ],
+  }
 ];
 
 // ============ DIAMOND SVG BUILDER ============
