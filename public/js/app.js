@@ -1,6 +1,6 @@
 // ============ DATA ============
 const POS = {
-  HOME:{x:200,y:330}, "1B":{x:300,y:230}, "2B":{x:200,y:130}, "3B":{x:100,y:230},
+  HOME:{x:200,y:330}, "1B":{x:295,y:235}, "2B":{x:200,y:160}, "3B":{x:105,y:235},
   P:{x:200,y:220}, C:{x:200,y:345},
   "1Bf":{x:310,y:180}, "2Bf":{x:250,y:135}, SS:{x:150,y:135}, "3Bf":{x:90,y:180},
   LF:{x:60,y:110}, LC:{x:140,y:60}, RC:{x:260,y:60}, RF:{x:340,y:110},
@@ -622,7 +622,7 @@ function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
     }
   }
 
-  const baseCoords = [{x:200,y:330},{x:270,y:248},{x:200,y:165},{x:130,y:248}];
+  const baseCoords = [POS.HOME, POS["1B"], POS["2B"], POS["3B"]];
   baseCoords.forEach(b => s += `<rect x="${b.x-6}" y="${b.y-6}" width="12" height="12" fill="#fff" transform="rotate(45 ${b.x} ${b.y})" />`);
 
   (runners || []).forEach(r => {
