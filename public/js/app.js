@@ -1,6 +1,6 @@
 // ============ DATA ============
 const POS = {
-  HOME:{x:200,y:330}, "1B":{x:300,y:230}, "2B":{x:200,y:130}, "3B":{x:100,y:230},
+  HOME:{x:200,y:330}, "1B":{x:300,y:230}, "2B":{x:200,y:150}, "3B":{x:100,y:230},
   P:{x:200,y:220}, C:{x:200,y:345},
   "1Bf":{x:310,y:180}, "2Bf":{x:250,y:135}, SS:{x:150,y:135}, "3Bf":{x:90,y:180},
   LF:{x:60,y:110}, LC:{x:140,y:60}, RC:{x:260,y:60}, RF:{x:340,y:110},
@@ -407,14 +407,14 @@ const SCENARIOS = [
   },
   {
     id: 33, category: "Infield Backups",
-    situation: "Nobody on base. Single hit into left field.",
-    question: "You're the PITCHER. Where do you go to back up 2nd base?",
+    situation: "Nobody on base. Single hit into left field. The batter-runner rounds 1st and tries to stretch it to 2nd!",
+    question: "You're the PITCHER. Where do you go?",
     runners: [], yourPosition: "P", emoji: "⚾",
     ballPath: [{ from: "HOME", to: "LF", type: "hit" }, { from: "LF", to: "2B", type: "throw" }],
     options: [
-      { text: "Stay on the pitcher's mound", correct: false, feedback: "Never stand still! If the throw from left field is wild, the batter will take 2nd base." },
-      { text: "Run to a spot well behind 2nd base", correct: true, feedback: "Smart! Line yourself up with the throw from LF to 2B so you can catch any overthrows." },
-      { text: "Run to 1st base", correct: false, feedback: "The runner is going to 2nd. You need to back up the base where the play is happening!" }
+      { text: "Stay on the pitcher's mound", correct: false, feedback: "Never stand still! If the throw from left field is wild, the batter-runner takes an extra base!" },
+      { text: "Run to a spot well behind 2nd base", correct: true, feedback: "Smart! The batter-runner is heading to 2nd, so line yourself up behind the bag to catch any overthrows." },
+      { text: "Run to 1st base", correct: false, feedback: "The batter-runner already passed 1st. The throw is going to 2nd!" }
     ],
   },
   {
@@ -606,9 +606,9 @@ function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
   
   s += `<circle cx="200" cy="200" r="195" fill="#0a1a0d" />`;
   s += `<circle cx="200" cy="200" r="185" fill="#1b3d21" />`;
-  s += `<rect x="100" y="100" width="200" height="200" fill="#5d4037" transform="rotate(45 200 200)" />`;
-  s += `<rect x="135" y="135" width="130" height="130" fill="#1b3d21" transform="rotate(45 200 200)" />`;
-  s += `<circle cx="200" cy="220" r="15" fill="#5d4037" />`;
+  s += `<rect x="110" y="110" width="180" height="180" fill="#5d4037" transform="rotate(45 200 240)" />`;
+  s += `<rect x="140" y="140" width="120" height="120" fill="#1b3d21" transform="rotate(45 200 240)" />`;
+  s += `<circle cx="200" cy="230" r="15" fill="#5d4037" />`;
   s += `<line x1="200" y1="330" x2="365" y2="165" stroke="rgba(255,255,255,0.4)" stroke-width="2" />`;
   s += `<line x1="200" y1="330" x2="35" y2="165" stroke="rgba(255,255,255,0.4)" stroke-width="2" />`;
 
@@ -622,7 +622,7 @@ function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
     }
   }
 
-  const baseCoords = [{x:200,y:330},{x:300,y:230},{x:200,y:130},{x:100,y:230}];
+  const baseCoords = [{x:200,y:330},{x:300,y:230},{x:200,y:150},{x:100,y:230}];
   baseCoords.forEach(b => s += `<rect x="${b.x-6}" y="${b.y-6}" width="12" height="12" fill="#fff" transform="rotate(45 ${b.x} ${b.y})" />`);
 
   (runners || []).forEach(r => {
