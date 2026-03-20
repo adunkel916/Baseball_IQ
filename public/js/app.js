@@ -471,10 +471,26 @@ function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
 // ============ ENGINE ============
 const sounds = {
   hit: new Audio('sounds/hit.mp3'),
-  strike: new Audio('sounds/strike.m4a'),
-  jackson: new Audio('sounds/jackson.m4a')
+  strike: new Audio('sounds/strike.m4a')
 };
 
+// Full roster restored
+const walkupSongs = {
+  "jackson": new Audio('sounds/jackson.m4a'),
+  "andres": new Audio('sounds/andres.m4a'),
+  "andrew": new Audio('sounds/andrew.m4a'),
+  "caleb": new Audio('sounds/caleb.m4a'),
+  "dallas": new Audio('sounds/dallas.m4a'),
+  "dominic": new Audio('sounds/dominic.m4a'),
+  "elliott": new Audio('sounds/elliott.m4a'),
+  "gio": new Audio('sounds/gio.m4a'),
+  "johnny": new Audio('sounds/johnny.m4a'),
+  "liam": new Audio('sounds/liam.m4a'),
+  "matthew": new Audio('sounds/matthew.m4a'),
+  "weston": new Audio('sounds/weston.m4a')
+};
+
+let currentWalkup = null;
 let questions = [], currentQ = 0, score = 0, streak = 0, bestStreak = 0, categoryFilter = "All", selected = null;
 const $ = (id) => document.getElementById(id);
 
@@ -494,9 +510,13 @@ function startGame() {
   questions = filtered.sort(() => Math.random() - 0.5);
   currentQ = 0; score = 0; streak = 0; bestStreak = 0;
   
-  if (sounds.jackson) { sounds.jackson.pause(); sounds.jackson.currentTime = 0; }
+  if (currentWalkup) { currentWalkup.pause(); currentWalkup.currentTime = 0; currentWalkup = null; }
+  
   const name = $("player-name").value.trim().toLowerCase();
-  if (name === "jackson") sounds.jackson.play();
+  if (walkupSongs[name]) {
+      currentWalkup = walkupSongs[name];
+      currentWalkup.play().catch(e => console.log("Audio play blocked by browser:", e));
+  }
   
   showScreen("play-screen");
   renderQuestion();
@@ -521,7 +541,8 @@ function renderQuestion() {
 function handleAnswer(btn) {
   if (selected) return;
   selected = btn;
-  if (sounds.jackson) { sounds.jackson.pause(); sounds.jackson.currentTime = 0; }
+  
+  if (currentWalkup) { currentWalkup.pause(); currentWalkup.currentTime = 0; currentWalkup = null; }
 
   const isCorrect = btn.dataset.correct === "true";
   document.querySelectorAll(".option-btn").forEach(b => {
@@ -529,8 +550,17 @@ function handleAnswer(btn) {
     if (b.dataset.correct === "true") b.style.borderColor = "var(--green)";
   });
   
-  if (isCorrect) { sounds.hit.play(); score++; streak++; if (streak > bestStreak) bestStreak = streak; } 
-  else { sounds.strike.play(); streak = 0; btn.style.borderColor = "#ff4444"; }
+  if (isCorrect) { 
+    sounds.hit.currentTime = 0;
+    sounds.hit.play().catch(e => console.log(e)); 
+    score++; streak++; 
+    if (streak > bestStreak) bestStreak = streak;
+  } else { 
+    sounds.strike.currentTime = 0;
+    sounds.strike.play().catch(e => console.log(e)); 
+    streak = 0; 
+    btn.style.borderColor = "#ff4444"; 
+  }
   
   $("feedback").classList.remove("hidden");
   $("feedback-text").textContent = (isCorrect ? "✅ " : "❌ ") + btn.dataset.feedback;
@@ -547,12 +577,35 @@ function showResults() {
   $("results-grade").textContent = pct >= 80 ? "ALL-STAR! ⭐" : (pct >= 50 ? "GOOD GAME! ⚾" : "KEEP WORKING! 💪");
 }
 
-function showScreen(id) { ["menu-screen","play-screen","results-screen"].forEach(s => $(s).classList.toggle("hidden", s !== id)); }
+function showScreen(id) {
+  ["menu-screen","play-screen","results-screen"].forEach(s => {
+    $(s).classList.toggle("hidden", s !== id);
+  });
+}
 
 $("start-btn").addEventListener("click", startGame);
-$("next-btn").addEventListener("click", () => currentQ+1 >= questions.length ? showResults() : (currentQ++, renderQuestion()));
-$("play-again-btn").addEventListener("click", startGame);
-$("main-menu-btn").addEventListener("click", () => { showScreen("menu-screen"); initMenu(); });
-$("quit-btn").addEventListener("click", () => { if (sounds.jackson) { sounds.jackson.pause(); sounds.jackson.currentTime = 0; } showScreen("menu-screen"); initMenu(); });
+$("next-btn").addEventListener("click", () => {
+  if (currentQ + 1 >= questions.length) {
+    showResults();
+  } else {
+    currentQ++;
+    renderQuestion();
+  }
+});
+
+$("play-again-btn").addEventListener("click", () => {
+  startGame();
+});
+
+$("main-menu-btn").addEventListener("click", () => {
+  showScreen("menu-screen");
+  initMenu();
+});
+
+$("quit-btn").addEventListener("click", () => {
+  if (currentWalkup) { currentWalkup.pause(); currentWalkup.currentTime = 0; currentWalkup = null; }
+  showScreen("menu-screen");
+  initMenu();
+});
 
 initMenu();
