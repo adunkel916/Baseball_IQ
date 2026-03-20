@@ -423,7 +423,6 @@ function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
   function rp(p) { return (typeof p==="object") ? p : (POS[p]||{x:200,y:200}); }
   let s = `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="background:transparent">`;
   
-  // Vector Field
   s += `<circle cx="200" cy="200" r="195" fill="#0a1a0d" />`;
   s += `<circle cx="200" cy="200" r="185" fill="#1b3d21" />`;
   s += `<rect x="100" y="100" width="200" height="200" fill="#5d4037" transform="rotate(45 200 200)" />`;
@@ -432,7 +431,6 @@ function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
   s += `<line x1="200" y1="330" x2="365" y2="165" stroke="rgba(255,255,255,0.4)" stroke-width="2" />`;
   s += `<line x1="200" y1="330" x2="35" y2="165" stroke="rgba(255,255,255,0.4)" stroke-width="2" />`;
 
-  // Ball Path with Ball Marker
   for (const seg of (ballPath || [])) {
     const from=rp(seg.from), to=rp(seg.to);
     let col = seg.type==="hit" ? "#ffffff" : (seg.type==="overthrow" ? "#ff4444" : "#5cd672");
@@ -443,12 +441,10 @@ function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
     }
   }
 
-  // Bases
   const baseCoords = [{x:200,y:330},{x:300,y:230},{x:200,y:130},{x:100,y:230}];
   baseCoords.forEach(b => s += `<rect x="${b.x-6}" y="${b.y-6}" width="12" height="12" fill="#fff" transform="rotate(45 ${b.x} ${b.y})" />`);
 
-  // Runners (Flashing)
-  runners.forEach(r => {
+  (runners || []).forEach(r => {
     const p = POS[r];
     if (p) {
         s += `<circle cx="${p.x}" cy="${p.y-18}" r="11" fill="#ff4444" stroke="#fff" stroke-width="2">
@@ -458,7 +454,6 @@ function buildDiamond(runners=[], yourPosition=null, ballPath=[]) {
     }
   });
 
-  // Fielders
   for (const f of FIELDERS) {
     const isYou = yourPosition===f.label;
     if (isYou) s += `<circle cx="${f.x}" cy="${f.y}" r="20" fill="none" stroke="#5cd672" stroke-width="3" opacity="0.6"><animate attributeName="r" values="18;22;18" dur="1.2s" repeatCount="indefinite"/></circle>`;
@@ -474,7 +469,6 @@ const sounds = {
   strike: new Audio('sounds/strike.m4a')
 };
 
-// Full roster restored
 const walkupSongs = {
   "jackson": new Audio('sounds/jackson.m4a'),
   "andres": new Audio('sounds/andres.m4a'),
@@ -495,9 +489,16 @@ let questions = [], currentQ = 0, score = 0, streak = 0, bestStreak = 0, categor
 const $ = (id) => document.getElementById(id);
 
 function initMenu() {
-  $("menu-diamond").innerHTML = buildDiamond([], null);
+  const diamondEl = $("menu-diamond");
+  const catButtonsEl = $("category-buttons");
+  
+  if (!diamondEl || !catButtonsEl) return; 
+
+  diamondEl.innerHTML = buildDiamond([], null, []);
   const cats = ["All", ...new Set(SCENARIOS.map(s => s.category))];
-  $("category-buttons").innerHTML = cats.map(c => `<button class="cat-btn${categoryFilter===c?' active':''}" data-cat="${c}">${c}</button>`).join("");
+  
+  catButtonsEl.innerHTML = cats.map(c => `<button class="cat-btn${categoryFilter===c?' active':''}" data-cat="${c}">${c}</button>`).join("");
+  
   document.querySelectorAll(".cat-btn").forEach(btn => btn.addEventListener("click", () => {
     categoryFilter = btn.dataset.cat;
     document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
@@ -515,7 +516,7 @@ function startGame() {
   const name = $("player-name").value.trim().toLowerCase();
   if (walkupSongs[name]) {
       currentWalkup = walkupSongs[name];
-      currentWalkup.play().catch(e => console.log("Audio play blocked by browser:", e));
+      currentWalkup.play().catch(e => console.log("Audio block:", e));
   }
   
   showScreen("play-screen");
@@ -532,6 +533,7 @@ function renderQuestion() {
   $("situation-text").textContent = q.situation;
   $("question-text").textContent = q.question;
   $("options-wrap").innerHTML = q.options.sort(() => Math.random() - 0.5).map(opt => `<button class="option-btn" data-correct="${opt.correct}" data-feedback="${opt.feedback}">${opt.text}</button>`).join("");
+  
   document.querySelectorAll(".option-btn").forEach(btn => btn.addEventListener("click", () => handleAnswer(btn)));
   $("feedback").classList.add("hidden");
   $("next-wrap").classList.add("hidden");
