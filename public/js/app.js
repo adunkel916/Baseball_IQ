@@ -1136,7 +1136,7 @@ const SCENARIOS = [
   // ===================== BASE RUNNING =====================
   {
     id:6, positions:["Base Running"], category:"Base Running",
-    situation:"You're on 2nd base. The batter hits a ground ball to the shortstop.",
+    situation:"You're on 2nd base with no runners on 1st or 3rd. The batter hits a ground ball to the shortstop.",
     question:"What should you do?",
     runners:["2B"], yourPosition:null, emoji:"🧠",
     ballPath:[{from:"HOME", to:"SS", type:"hit"}],
