@@ -1,6 +1,4 @@
 // ============ DATA ============
-const ALL_POS = ["P","C","1B","2B","SS","3B","LF","CF","RF","SF"];
-
 const POS = {
   HOME:{x:200,y:330}, "1B":{x:300,y:230}, "2B":{x:200,y:130}, "3B":{x:100,y:230},
   P:{x:200,y:220}, C:{x:200,y:345},
@@ -178,6 +176,18 @@ const SCENARIOS = [
       {text:"Stay on the mound", correct:false, feedback:"The 1st baseman left the bag! Someone needs to cover it!"},
       {text:"Sprint to cover 1st base", correct:true, feedback:"YES! When the 1st baseman fields a bunt, the pitcher MUST cover 1st base!"},
       {text:"Run to field the bunt yourself", correct:false, feedback:"The 1st baseman already has it. Get to the bag!"}
+    ],
+  },
+  {
+    id: 102, positions:["P"], category:"Pitcher",
+    situation:"Runner on 3rd. The pitch gets past the catcher for a passed ball!",
+    question:"You're the PITCHER. What is your job right now?",
+    runners:["3B"], yourPosition:"P", emoji:"🏃",
+    ballPath:[{from:"P", to:{x:200,y:370}, type:"overthrow"}],
+    options:[
+      {text:"Stay on the mound and wait for the new ball", correct:false, feedback:"The runner on 3rd is coming home! You have to cover the plate!"},
+      {text:"Sprint to cover home plate so the catcher can throw it to you", correct:true, feedback:"Perfect! Any time the ball gets past the catcher, the pitcher must hustle to cover home!"},
+      {text:"Run back to the backstop to help the catcher", correct:false, feedback:"The catcher will get the ball. They need someone at home plate to throw it to!"}
     ],
   },
 
@@ -596,6 +606,18 @@ const SCENARIOS = [
       {text:"Yell for the pitcher to get it", correct:false, feedback:"You're closer! Go make the play!"}
     ],
   },
+  {
+    id: 145, positions:["SS"], category:"Shortstop",
+    situation:"Runner on 1st base. High pop fly hit right to you at Shortstop.",
+    question:"You're the SHORTSTOP. You make the catch. What do you check next?",
+    runners:["1B"], yourPosition:"SS", emoji:"🧠",
+    ballPath:[{from:"HOME", to:"SS", type:"hit"}],
+    options:[
+      {text:"Toss the ball back to the pitcher", correct:false, feedback:"Check the runner first! They might have forgotten to stay on base!"},
+      {text:"Check to see if the runner on 1st wandered too far off the base", correct:true, feedback:"Smart! At 8U, runners sometimes forget to stay on base during a pop fly. You might get a double play!"},
+      {text:"Throw to 2nd base", correct:false, feedback:"The runner started at 1st base, so that is the bag you should check!"}
+    ]
+  },
 
   // ===================== THIRD BASE (3B) =====================
   {
@@ -765,7 +787,7 @@ const SCENARIOS = [
     options:[
       {text:"Wait for it to come to you", correct:false, feedback:"Charge the ball! The batter is running and every second counts!"},
       {text:"Charge the ball aggressively and field it on the run", correct:true, feedback:"Hustle! Get to the ball fast to hold the runner to a single!"},
-      {text:"Let it roll to see if it goes foul", correct:false, feedback:"You're in the outfield — the ball can't go foul out here! Charge it!"}
+      {text:"Let it roll to see if it goes foul", correct:false, feedback:"You're in the outfield, the ball can't go foul out here! Charge it!"}
     ],
   },
   {
@@ -1111,9 +1133,9 @@ const SCENARIOS = [
     ],
   },
 
-  // ===================== BASE RUNNING (ALL POSITIONS) =====================
+  // ===================== BASE RUNNING =====================
   {
-    id:6, positions:ALL_POS, category:"Base Running",
+    id:6, positions:["Base Running"], category:"Base Running",
     situation:"You're on 2nd base. The batter hits a ground ball to the shortstop.",
     question:"What should you do?",
     runners:["2B"], yourPosition:null, emoji:"🧠",
@@ -1125,7 +1147,7 @@ const SCENARIOS = [
     ],
   },
   {
-    id:11, positions:ALL_POS, category:"Base Running",
+    id:11, positions:["Base Running"], category:"Base Running",
     situation:"You're on 1st base. The batter hits a ground ball to the 2nd baseman.",
     question:"What should you do?",
     runners:["1B"], yourPosition:null, emoji:"🧠",
@@ -1137,7 +1159,7 @@ const SCENARIOS = [
     ],
   },
   {
-    id:12, positions:ALL_POS, category:"Base Running",
+    id:12, positions:["Base Running"], category:"Base Running",
     situation:"You're on 2nd base with no outs. The batter hits a fly ball to right field.",
     question:"What should you do?",
     runners:["2B"], yourPosition:null, emoji:"🧠",
@@ -1149,7 +1171,7 @@ const SCENARIOS = [
     ],
   },
   {
-    id:13, positions:ALL_POS, category:"Base Running",
+    id:13, positions:["Base Running"], category:"Base Running",
     situation:"You're on 3rd base with less than 2 outs. A fly ball is hit deep to left field.",
     question:"What should you do?",
     runners:["3B"], yourPosition:null, emoji:"🧠",
@@ -1161,7 +1183,7 @@ const SCENARIOS = [
     ],
   },
   {
-    id:14, positions:ALL_POS, category:"Base Running",
+    id:14, positions:["Base Running"], category:"Base Running",
     situation:"You're on 1st base. The batter hits a fly ball to the left fielder who catches it.",
     question:"What do you do?",
     runners:["1B"], yourPosition:null, emoji:"🧠",
@@ -1173,7 +1195,7 @@ const SCENARIOS = [
     ],
   },
   {
-    id:19, positions:ALL_POS, category:"Base Running",
+    id:19, positions:["Base Running"], category:"Base Running",
     situation:"You're on 1st base. The batter hits a ground ball right at the 1st baseman.",
     question:"What should you do?",
     runners:["1B"], yourPosition:null, emoji:"🧠",
@@ -1185,7 +1207,7 @@ const SCENARIOS = [
     ],
   },
   {
-    id:20, positions:ALL_POS, category:"Base Running",
+    id:20, positions:["Base Running"], category:"Base Running",
     situation:"You're on 2nd base. The batter hits a single into right field.",
     question:"What should you do?",
     runners:["2B"], yourPosition:null, emoji:"🏃",
@@ -1197,7 +1219,7 @@ const SCENARIOS = [
     ],
   },
   {
-    id:21, positions:ALL_POS, category:"Base Running",
+    id:21, positions:["Base Running"], category:"Base Running",
     situation:"You just hit the ball into the outfield. You're running to 1st base.",
     question:"Should you run straight to 1st base or round it?",
     runners:[], yourPosition:null, emoji:"🏃",
@@ -1209,7 +1231,7 @@ const SCENARIOS = [
     ],
   },
   {
-    id:22, positions:ALL_POS, category:"Base Running",
+    id:22, positions:["Base Running"], category:"Base Running",
     situation:"You hit a ground ball to the infield. You're running to 1st base.",
     question:"How should you run through 1st base?",
     runners:[], yourPosition:null, emoji:"🏃",
@@ -1221,9 +1243,9 @@ const SCENARIOS = [
     ],
   },
 
-  // ===================== GAME SMARTS (ALL POSITIONS) =====================
+  // ===================== GAME SMARTS =====================
   {
-    id:10, positions:ALL_POS, category:"Game Smarts",
+    id:10, positions:["Game Smarts"], category:"Game Smarts",
     situation:"There's a pop fly hit high in the air between you and another fielder.",
     question:"What's the MOST important thing to do?",
     runners:[], yourPosition:null, emoji:"📢",
@@ -1235,7 +1257,7 @@ const SCENARIOS = [
     ],
   },
   {
-    id:17, positions:ALL_POS, category:"Game Smarts",
+    id:17, positions:["Game Smarts"], category:"Game Smarts",
     situation:"You catch a ground ball in the infield with a runner on 1st and 1 out.",
     question:"Where should you throw the ball?",
     runners:["1B"], yourPosition:null, emoji:"🧠",
@@ -1247,7 +1269,7 @@ const SCENARIOS = [
     ],
   },
   {
-    id:18, positions:ALL_POS, category:"Game Smarts",
+    id:18, positions:["Game Smarts"], category:"Game Smarts",
     situation:"You're playing outfield. A base hit goes between you and another outfielder.",
     question:"Who should field the ball?",
     runners:[], yourPosition:null, emoji:"📢",
@@ -1259,7 +1281,7 @@ const SCENARIOS = [
     ],
   },
   {
-    id:27, positions:ALL_POS, category:"Game Smarts",
+    id:27, positions:["Game Smarts"], category:"Game Smarts",
     situation:"There are 2 outs and a runner on 3rd. A ground ball is hit to you.",
     question:"Where do you throw?",
     runners:["3B"], yourPosition:null, emoji:"🧠",
@@ -1271,7 +1293,7 @@ const SCENARIOS = [
     ],
   },
   {
-    id:28, positions:ALL_POS, category:"Game Smarts",
+    id:28, positions:["Game Smarts"], category:"Game Smarts",
     situation:"A ground ball is hit right at you and takes a bad hop.",
     question:"What's the MOST important thing to do?",
     runners:[], yourPosition:null, emoji:"🛡️",
@@ -1283,7 +1305,7 @@ const SCENARIOS = [
     ],
   },
   {
-    id:29, positions:ALL_POS, category:"Game Smarts",
+    id:29, positions:["Game Smarts"], category:"Game Smarts",
     situation:"You field a ground ball base hit in the outfield with a runner on 1st.",
     question:"What do you do with the ball?",
     runners:["1B"], yourPosition:null, emoji:"🧠",
@@ -1366,7 +1388,8 @@ let currentWalkup = null;
 let questions = [], currentQ = 0, score = 0, streak = 0, bestStreak = 0, positionFilter = "All", selected = null;
 const $ = (id) => document.getElementById(id);
 
-const POSITION_LIST = ["All", "P", "C", "1B", "2B", "SS", "3B", "LF", "CF", "RF", "SF"];
+// Included Base Running and Game Smarts as dedicated buttons
+const CATEGORIES_LIST = ["All", "P", "C", "1B", "2B", "SS", "3B", "LF", "CF", "RF", "SF", "Base Running", "Game Smarts"];
 
 function initMenu() {
   const diamondEl = $("menu-diamond");
@@ -1375,7 +1398,7 @@ function initMenu() {
 
   diamondEl.innerHTML = buildDiamond([], null, []);
   
-  posBtnsEl.innerHTML = POSITION_LIST.map(p => {
+  posBtnsEl.innerHTML = CATEGORIES_LIST.map(p => {
     const count = p === "All" ? SCENARIOS.length : SCENARIOS.filter(s => s.positions.includes(p)).length;
     return `<button class="cat-btn${positionFilter===p?' active':''}" data-pos="${p}">${p} <span style="opacity:0.5;font-size:9px">(${count})</span></button>`;
   }).join("");
@@ -1412,15 +1435,27 @@ function renderQuestion() {
   $("play-diamond").innerHTML = buildDiamond(q.runners, q.yourPosition, q.ballPath);
   $("situation-text").textContent = q.situation;
   $("question-text").textContent = q.question;
-  $("options-wrap").innerHTML = q.options.sort(() => Math.random() - 0.5).map(opt => `<button class="option-btn" data-correct="${opt.correct}" data-feedback="${opt.feedback}">${opt.text}</button>`).join("");
   
-  document.querySelectorAll(".option-btn").forEach(btn => btn.addEventListener("click", () => handleAnswer(btn)));
+  // Create buttons using DOM to prevent HTML breaking on quotes/apostrophes
+  const optionsWrap = $("options-wrap");
+  optionsWrap.innerHTML = "";
+  
+  const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
+  shuffledOptions.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.className = "option-btn";
+    btn.dataset.correct = opt.correct;
+    btn.textContent = opt.text;
+    btn.addEventListener("click", () => handleAnswer(btn, opt.feedback));
+    optionsWrap.appendChild(btn);
+  });
+  
   $("feedback").classList.add("hidden");
   $("next-wrap").classList.add("hidden");
   selected = null;
 }
 
-function handleAnswer(btn) {
+function handleAnswer(btn, feedbackText) {
   if (selected) return;
   selected = btn;
   
@@ -1445,7 +1480,7 @@ function handleAnswer(btn) {
   }
   
   $("feedback").classList.remove("hidden");
-  $("feedback-text").textContent = (isCorrect ? "✅ " : "❌ ") + btn.dataset.feedback;
+  $("feedback-text").textContent = (isCorrect ? "✅ " : "❌ ") + feedbackText;
   $("next-wrap").classList.remove("hidden");
   $("next-btn").textContent = currentQ+1 >= questions.length ? "RESULTS" : "NEXT PLAY →";
 }
